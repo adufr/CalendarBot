@@ -1,0 +1,12 @@
+# config file
+config.js
+
+# stored data
+bwd/
+
+# dependencies
+node_modules/
+
+# editor configuration
+.vscode/
+.idea/

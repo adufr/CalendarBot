@@ -14,6 +14,9 @@ RUN npm install
 # bundle all source code
 COPY . . 
 
+# deletes all default klasa commands
+RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/*
+
 # runs the bot in development mode:
 # - uses a special bot token
 # - uses nodemon 

@@ -17,9 +17,6 @@ module.exports = class extends Command {
   }
 
   async run (msg) {
-    // Vérification envoie sur un serveur
-    if (!msg.guild) return msg.reply(`cette commande ne fonctionne pas en message privé pour le moment !`)
-
     // Si le serveur n'a aucune tâches
     if (!msg.guild.settings.tasklist.tasks[0]) return msg.reply(`Il n'y a aucune tâche à venir...\nPour en ajouter, veuillez exécuter la commande \`%addtask\` ou vous référer à l'aide avec la commande \`%help addtask\`.`)
 
@@ -43,8 +40,8 @@ module.exports = class extends Command {
     var datePassage
     msg.guild.settings.tasklist.tasks.forEach(task => {
       // Date de la tâche
-      let date = moment(task.due_date, 'DD/MM/YY')
-      let weekday = moment(task.due_date).isoWeekday()
+      let date = moment(task.due_date, 'DD-MM-YY').format('DD/MM/YY')
+      let weekday = moment(task.due_date, 'DD-MM-YY').isoWeekday()
 
       // Rajouter la tâche au bon endroit dans l'embed
       // Si le field avec la date existe déjà : ça l'ajoute

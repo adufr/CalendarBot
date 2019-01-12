@@ -23,7 +23,8 @@ module.exports = class extends Command {
     const task = {
       title: titre,
       due_date: date,
-      description: description.join(' ')
+      description: description.join(' '),
+      author: message.author.tag
     }
     await message.guild.settings.update('tasklist.tasks', task)
     return message.reply(`votre tâche : **${titre}**, pour le **${date}** a bien été ajoutée ! :white_check_mark:`)

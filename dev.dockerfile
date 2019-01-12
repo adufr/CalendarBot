@@ -17,4 +17,4 @@ COPY . .
 # runs the bot in development mode:
 # - uses a special bot token
 # - uses nodemon 
-CMD ["./node_modules/.bin/nodemon", "src/app.js"]
+CMD ["npm", "run", "dev"]

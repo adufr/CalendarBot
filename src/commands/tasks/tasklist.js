@@ -36,28 +36,35 @@ module.exports = class extends Command {
     // Si oui, cela va afficher Demain dans l'affichage des devoirs
     const demain = moment(currentDate.setDate(currentDate.getDate() + 1)).format('DD/MM/YY')
 
-    // Pour chaque entrée, on vérifie la date
-    var datePassage
-    msg.guild.settings.tasklist.tasks.forEach(task => {
-      // Date de la tâche
+    // Retrieves all guild's tasks
+    // and sorts them by date
+    const tasks = msg.guild.settings.tasklist.tasks
+    tasks.sort(this.client.funcs.sortDueDates)
+    tasks.forEach(task => {
+      // task date
       let date = moment(task.due_date, 'DD-MM-YY').format('DD/MM/YY')
       let weekday = moment(task.due_date, 'DD-MM-YY').isoWeekday()
+      let formatedDate = formatDate(date, weekday)
+      let changed = false
 
-      // Rajouter la tâche au bon endroit dans l'embed
-      // Si le field avec la date existe déjà : ça l'ajoute
-      // Sinon, création d'un nouveau field
-      // (gère aussi la traduction pour "ajourd'hui" & "demain")
-      if (datePassage && datePassage === date) {
-        embed.fields[embed.fields.length - 1].value += `\n**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'aucune description...'}`
-      } else if (date === aujourdhui) {
-        embed.addField(`Aujourd'hui :`, `**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'aucune description...'}`)
-      } else if (date === demain) {
-        embed.addField('Demain :', `**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'aucune description...'}`)
-      } else {
-        embed.addField(formatDate(date, weekday) + ' :', '**`' + this.client.funcs.beautify(task.title, 14) + '`** - ' + task.description)
+      // For each field
+      embed.fields.forEach((field) => {
+        // if there's already a field with this date
+        if (field.name === formatedDate || (field.name === "Aujourd'hui :" && date === aujourdhui) || (field.name === 'Demain :' && date === demain)) {
+          field.value += `\n**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`
+          changed = true
+        }
+      })
+
+      if (!changed) {
+        if (date === aujourdhui) {
+          embed.addField(`Aujourd'hui :`, `**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`)
+        } else if (date === demain) {
+          embed.addField('Demain :', `**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`)
+        } else {
+          embed.addField(formatedDate, '**`' + this.client.funcs.beautify(task.title, 14) + '`** - ' + task.description)
+        }
       }
-
-      datePassage = date
     })
 
     msg.send(embed)
@@ -133,5 +140,5 @@ function formatDate (date, weekday) {
       mois = 'Décembre'
       break
   }
-  return `${jour} ${temp[0]} ${mois}`
+  return `${jour} ${temp[0]} ${mois} :`
 }

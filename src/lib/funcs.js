@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 module.exports = {
   // Manages text alignement
   // (adds some dots (".") depending of the size of
@@ -9,5 +11,9 @@ module.exports = {
       }
     }
     return string
+  },
+  // Sorts dates
+  sortDueDates (a, b) {
+    return moment(a.due_date, 'DD-MM-YY') - moment(b.due_date, 'DD-MM-YY')
   }
 }

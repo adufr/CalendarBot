@@ -14,7 +14,6 @@ module.exports = KlasaClient.defaultGuildSchema
     }))
 
   // tasks
-  .add('tasklist', folder => folder
-    .add('tasks', 'any', {
-      array: true
-    }))
+  .add('tasks', 'any', {
+    array: true
+  })

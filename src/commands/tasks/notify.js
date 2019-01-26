@@ -47,9 +47,9 @@ function updateRole (message, member, role) {
   // if he already has the role
   if (message.member.roles.find(val => val.id === role.id)) {
     message.member.roles.remove(role)
-    return message.reply('vous **ne recevrez plus** de notifications. :white_check_mark:')
+    return message.reply('vous **ne recevrez plus** de notifications. <:success:538698744921849876>')
   } else {
     message.member.roles.add(role)
-    return message.reply('vous **serez notifié** des devoirs à faire à J-1. :white_check_mark:')
+    return message.reply('vous **serez notifié** des devoirs à faire à J-1. <:success:538698744921849876>')
   }
 }

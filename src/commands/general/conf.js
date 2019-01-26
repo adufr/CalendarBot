@@ -42,7 +42,7 @@ module.exports = class extends Command {
           value = getChannel(message, value)
           if (!value) return
           message.guild.settings.update('channels.tasks', value.id)
-          message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! :white_check_mark:`)
+          message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
           break
         // notifications 
         case 'notifications':
@@ -52,7 +52,7 @@ module.exports = class extends Command {
           value = getChannel(message, value)
           if (!value) return
           message.guild.settings.update('channels.notifications', value.id)
-          message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name}\` ! :white_check_mark:`)
+          message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
           break
         // invalid key
         default:
@@ -76,7 +76,7 @@ module.exports = class extends Command {
           value = getRole(message, value)
           if (!value) return
           message.guild.settings.update('roles.addtask', value.id || 'everyone')
-          message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` pourront désormais ajouter des tâches ! :white_check_mark:`)
+          message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` pourront désormais ajouter des tâches ! <:success:538698744921849876>`)
           break
         // notifications 
         case 'notifications':
@@ -87,7 +87,7 @@ module.exports = class extends Command {
           value = getRole(message, value)
           if (!value) return
           message.guild.settings.update('roles.notify', value.id || 'everyone')
-          message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name || 'everyone'}\` ! :white_check_mark:`)
+          message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name || 'everyone'}\` ! <:success:538698744921849876>`)
           break
         // invalid key
         default:

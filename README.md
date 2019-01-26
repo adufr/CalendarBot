@@ -1,40 +1,86 @@
-# CalendarBot
+<p align="center"><a href="https://calendarbot.arthurdufour.com" target="_blank" rel="noopener noreferrer"><img width="100" src="https://cdn.discordapp.com/avatars/473070839085137933/88f4eaabb13663605dbc9a942e7468ba.png?size=128" alt="CalendarBot Logo"></a></p>
 
-[![CalendarBot's version](https://img.shields.io/badge/version-0.2.0-brightgreen.svg)](https://discord.gg/ff4f52s)
-![GitHub issues](https://img.shields.io/github/issues-raw/Woosy/CalendarBot.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/Woosy/CalendarBot.svg)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d51355f9284b4c7da809a167e36dbd87)](https://app.codacy.com/app/CalendarBot/CalendarBot?utm_source=github.com&utm_medium=referral&utm_content=Woosy/CalendarBot&utm_campaign=Badge_Grade_Dashboard)
-[![ISC Licence](https://img.shields.io/hexpm/l/plug.svg)](https://tldrlegal.com/license/-isc-license))
+<p align="center">
+  <a href="https://travis-ci.com/Woosy/CalendarBot"><img src="https://travis-ci.com/Woosy/CalendarBot.svg?token=hs9zzVRsbjobLodxapzr&branch=master" alt="Build Status"></a>
+  <a href="https://www.npmjs.com/package/calendarbot"><img src="https://img.shields.io/npm/v/:CalendarBot.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/calendarbot"><img src="	https://img.shields.io/github/license/Woosy/CalendarBot.svg" alt="License"></a>
+  <a href="https://discord.gg/6bwdrbV"><img src="https://img.shields.io/badge/support-on%20discord-7289da.svg" alt="Support"></a>
+  <br>
+</p>
 
-## What is CalendarBot
+<h2 align="center">CalendarBot</h2>
 
-CalendarBot is a **Discord bot**, made in Javascript using **nodejs**, **discord.js** & **klasajs**.
+CalendarBot is an ISC-licensed Discord Bot designed to be a community driven Calendar application.
 
-[![Invite CalendarBot on your server](https://img.shields.io/badge/Invite%20me-(click)-7289DA.svg?logo=discord)](https://discordapp.com/oauth2/authorize?client_id=364846844217524225&scope=bot&permissions=2146958591) - Click this badge to add CalendarBot to your server
+CalendarBot is also an open source project, which we started as a way to practice Node.js applications development, so feel free to help us improve by contributing to the project!
 
-[![Join our official server](https://img.shields.io/discord/358623719914209301.svg?logo=discord&label=join%20us!&colorB=7289DA)](https://discord.gg/ff4f52s) - Click this badge to join our official server!
 
-## Features
+---
 
-Currently, CalendarBot allows you to do the following things:
 
-* Create a task with a title, a description, and due date
-* Manually list all coming tasks (with a command)
-* Automatically posting the updated tasklist on a text channel (configurable)
-* Get notified the day before a task come to its end
+## Introduction
 
-## Authors
+CalendarBot was initially planned to be an easy solution to track homeworks and tests for my promotion. But as we went along, we continued to add more and more features, finally making it a real Calendar Application for Discord.
 
-* **Arthur Dufour** - *Project creator & developper* - [Woosy](https://github.com/Woosy) ![Follow me on Twitter](https://img.shields.io/twitter/follow/Woosy__.svg?style=social&label=Follow)
-* **Thomas Zimmermann** - *Developper* - [Worldten](https://github.com/Worldten)
-* **Alexandre Tuet** - *Developper of v1* - [ATuet](https://github.com/atuet)
+Of course, it wasn't made to replace your Smartphone Calendar app, but to be an easy way for Discord communities to schedule things, and having people access that schedule.
 
-*You might also want to give a look to our [contributors](https://github.com/Woosy/CalendarBot/contributors) list to see who has already helped in this project.*
+#### Add CalendarBot to your Discord Guild!
 
-## Contributing
+You can benefit from all CalendarBot's features by simply adding it to your Discord Guild with [this invitation link](https://discordapp.com/oauth2/authorize?client_id=473070839085137933&scope=bot&permissions=1409674304&response_type=code).
 
-*This section will come later, since the bot is still on a very early development stage.*
+*(Please note that the bot requires the selected permissions in order to be fully-functionnal.)*
+
+
+## Ecosystem
+
+*Those are all librairies which we are using to build CalendarBot*
+
+| Library | Version | Description |
+|---------|--------|-------------|
+| [discord.js]          | [![discord.js-version]][discord.js-package] | A powerful JavaScript library for interacting with the Discord API |
+| [klasa]                | [![klasa-version]][klasa-package] | A class remix of the Komada Bot Framework |
+| [moment]             | [![moment-version]][moment-package] | Parse, validate, manipulate, and display dates in javascript. |
+
+
+[discord.js]: https://github.com/discordjs/discord.js/
+[klasa]: https://github.com/dirigeants/klasa
+[moment]: https://github.com/moment/moment
+
+[discord.js-version]: https://img.shields.io/npm/v/discord.js.svg
+[klasa-version]: https://img.shields.io/npm/v/klasa.svg
+[moment-version]: https://img.shields.io/npm/v/moment.svg
+
+[discord.js-package]: https://npmjs.com/package/discord.js
+[klasa-package]: https://npmjs.com/package/klasa
+[moment-package]: https://npmjs.com/package/moment
+
+
+## Issues & questions
+
+If you're experiencing problems with the CalendarBot, feel free to submit an issue.
+You can also get support on our [official Discord here](https://discord.gg/6bwdrbV).
+Please make sure to read the [Issue Reporting Checklist](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md#issue-reporting-guidelines) before opening an issue. Issues not conforming to the guidelines may be closed immediately.
+
+
+## Changelog
+
+Detailed changes for each **release** are documented in the [release notes](https://github.com/Woosy/CalendarBot/releases).
+
+
+## Stay In Touch
+
+- [Road-map (Trello)](https://trello.com/b/ggZbHTvp/)
+- [Website](https://calendarbot.arthurdufour.com)
+- [Woosy's Twitter](https://twitter.com/Woosy__)
+
+
+## Contribution
+
+Because the [Contributing Guide](https://github.com/Woosy/CalendarBot/blob/dev/.github/CONTRIBUTING.md) currently doesn't exist, feel free to submit a pull request and we'll review it!
+
 
 ## License
 
-[![ISC Licence](https://img.shields.io/hexpm/l/plug.svg)](https://tldrlegal.com/license/-isc-license) - This project is under ISC license.
+This project is under [ISC](https://choosealicense.com/licenses/isc/) license.
+
+***Copyright (c) 2018-present, Arthur Dufour (Woosy)***

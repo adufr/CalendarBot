@@ -14,5 +14,8 @@ RUN npm install
 # bundle all source code
 COPY . . 
 
+# deletes all default klasa commands
+RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/*
+
 # runs the bot in production mode:
 CMD ["node", "src/app.js"]

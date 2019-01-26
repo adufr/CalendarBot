@@ -19,31 +19,41 @@ module.exports = class extends Command {
     if (!message.guild) return
 
     const guild = message.guild
-    var role = await guild.roles.find(role => role.name === 'calendarbot_notify' === true)
-    if (role == null || !guild.roles.has(role.id)) {
-      // role creation
-      await guild.roles.create({
-        data: {
-          name: 'calendarbot_notify',
-          mentionable: true
-        }
-      }).then((result) => {
+
+    // if there is a configured role
+    var role = await guild.roles.find(role => role.id === guild.settings.roles.notify)
+    if (role) {
+      return updateRole(message, role)
+    }
+    // otherwise use the bot's default role
+    else {
+      
+      var role = await guild.roles.find(role => role.name === 'calendarbot_notify' === true)
+      if (role == null || !guild.roles.has(role.id)) {
+        // role creation
+        await guild.roles.create({
+          data: {
+            name: 'calendarbot_notify',
+            mentionable: true
+          }
+        }).then((result) => {
+          // sets the role to the user
+          return updateRole(message, result.id)
+        }).catch((err) => {
+          this.client.console.error(err)
+          return message.reply('une erreur est survenue...\nSi cela persiste, rejoignez le discord de support ! discord.gg/ff4f52s')
+        })
+      } else {
         // sets the role to the user
-        return updateRole(message, message.member, result.id)
-      }).catch((err) => {
-        this.client.console.error(err)
-        return message.reply('une erreur est survenue...\nSi cela persiste, rejoignez le discord de support ! discord.gg/ff4f52s')
-      })
-    } else {
-      // sets the role to the user
-      return updateRole(message, message.member, role)
+        return updateRole(message, role)
+      }
     }
   }
 }
 
 // Updates user's role depending of him
 // already having it or not
-function updateRole (message, member, role) {
+function updateRole (message, role) {
   // if he already has the role
   if (message.member.roles.find(val => val.id === role.id)) {
     message.member.roles.remove(role)

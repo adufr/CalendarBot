@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://travis-ci.com/Woosy/CalendarBot"><img src="https://travis-ci.com/Woosy/CalendarBot.svg?token=hs9zzVRsbjobLodxapzr&branch=master" alt="Build Status"></a>
-  <a href="https://www.npmjs.com/package/calendarbot"><img src="https://img.shields.io/npm/v/CalendarBot.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/calendarbot"><img src="https://img.shields.io/npm/v/calendarbot.svg" alt="Version"></a>
   <a href="https://www.npmjs.com/package/calendarbot"><img src="	https://img.shields.io/github/license/Woosy/CalendarBot.svg" alt="License"></a>
   <a href="https://discord.gg/6bwdrbV"><img src="https://img.shields.io/badge/support-on%20discord-7289da.svg" alt="Support"></a>
   <br>

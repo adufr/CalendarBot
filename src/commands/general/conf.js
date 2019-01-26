@@ -40,7 +40,7 @@ module.exports = class extends Command {
         case 'tasklist':
         case 'tasks':
           value = getChannel(message, value)
-          if (!value) return
+          if (value === null) return
           message.guild.settings.update('channels.tasks', value.id)
           message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
           break
@@ -50,7 +50,7 @@ module.exports = class extends Command {
         case 'notifs':
         case 'notif':
           value = getChannel(message, value)
-          if (!value) return
+          if (value === null) return
           message.guild.settings.update('channels.notifications', value.id)
           message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
           break
@@ -74,7 +74,7 @@ module.exports = class extends Command {
         case 'tasks':
         case 'task':
           value = getRole(message, value)
-          if (!value) return
+          if (value === null) return
           message.guild.settings.update('roles.addtask', value.id || 'everyone')
           message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` pourront désormais ajouter des tâches ! <:success:538698744921849876>`)
           break
@@ -85,13 +85,13 @@ module.exports = class extends Command {
         case 'notifs':
         case 'notif':
           value = getRole(message, value)
-          if (!value) return
+          if (value === null) return
           message.guild.settings.update('roles.notify', value.id || 'everyone')
-          message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name || 'everyone'}\` ! <:success:538698744921849876>`)
+          message.reply(`les personnes avec le role \`@${value.name || 'everyone'}\` recevront désormais des notifications ! <:success:538698744921849876>`)
           break
         // invalid key
         default:
-          message.reply(`quelle channel souhaitez-vous configurer ? (possibilités : \`tasklist, notifications)\``)
+          message.reply(`quelle rôle souhaitez-vous configurer ? (possibilités : \`tasklist, notifications)\``)
           break
       }
 
@@ -107,7 +107,10 @@ module.exports = class extends Command {
 
 function getChannel(message, value) {
   // if no value provided
-  if (!value) return message.reply(`veuillez spécifier un channel ! (\`nom, id, ou #mention\`)`) 
+  if (!value) {
+    message.reply(`veuillez spécifier un channel ! (\`nom, id, ou #mention\`)`) 
+    return null
+  }
   // if value is a channel
   if (message.guild.channels.find(channel => channel.name === value || channel.id === value)) {
     return message.guild.channels.find(channel => channel.name === value || channel.id === value)
@@ -115,13 +118,16 @@ function getChannel(message, value) {
     return message.mentions.channels.first()
   } else {
     message.reply(`je n'ai pas trouvé le channel indiqué... (Essayez avec : \`nom, id, ou #mention\`)`)
+    return null
   }
-  return null
 }
 
 function getRole(message, value) {
   // if no value provided
-  if (!value) return message.reply(`veuillez spécifier un rôle ! (\`nom, id, ou @mention\`)`) 
+  if (!value) {
+    message.reply(`veuillez spécifier un rôle ! (\`nom, id, ou @mention\`)`) 
+    return null
+  }
   // if value is a role
   if (value === 'everyone' || value === 'all') {
     return 'everyone'
@@ -131,6 +137,6 @@ function getRole(message, value) {
     return message.mentions.roles.first()
   } else {
     message.reply(`je n'ai pas trouvé le rôle indiqué... (Essayez avec : \`nom, id, ou #mention\`)`)
+    return null
   }
-  return null
 }

@@ -15,11 +15,11 @@ module.exports = KlasaClient.defaultGuildSchema
 
   // roles configuration
   .add('roles', folder => folder
-    .add('addtask', 'TextChannel', {
+    .add('addtask', 'any', {
       default: null,
       configurable: true
     })
-    .add('notify', 'TextChannel', {
+    .add('notify', 'any', {
       default: null,
       configurable: true
     }))

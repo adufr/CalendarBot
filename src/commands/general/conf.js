@@ -1,6 +1,4 @@
 const { Command } = require('klasa')
-const { MessageEmbed } = require('discord.js')
-const path = require('path')
 
 module.exports = class extends Command {
   constructor (...args) {
@@ -41,7 +39,7 @@ module.exports = class extends Command {
         case 'tasks':
           value = getChannel(message, value)
           if (value === null) return
-          message.guild.settings.update('channels.tasks', value.id)
+          message.guild.settings.update('channels.tasklist', value.id)
           message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
           break
         // notifications 

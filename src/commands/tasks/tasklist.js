@@ -18,7 +18,7 @@ module.exports = class extends Command {
 
   async run (msg) {
     // Si le serveur n'a aucune tâches
-    if (!msg.guild.settings.tasks[0]) return msg.reply(`Il n'y a aucune tâche à venir...\nPour en ajouter, veuillez exécuter la commande \`%addtask\` ou vous référer à l'aide avec la commande \`%help addtask\`.`)
+    if (!msg.guild.settings.tasklist[0]) return msg.reply(`Il n'y a aucune tâche à venir...\nPour en ajouter, veuillez exécuter la commande \`%addtask\` ou vous référer à l'aide avec la commande \`%help addtask\`.`)
 
     // Embed avec la liste des tâches
     const embed = new MessageEmbed()
@@ -38,7 +38,7 @@ module.exports = class extends Command {
 
     // Retrieves all guild's tasks
     // and sorts them by date
-    const tasks = msg.guild.settings.tasks
+    const tasks = msg.guild.settings.tasklist
     tasks.sort(this.client.funcs.sortDueDates)
     tasks.forEach(task => {
       // task date

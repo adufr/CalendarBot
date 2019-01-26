@@ -4,7 +4,7 @@ module.exports = KlasaClient.defaultGuildSchema
 
   // channels configuration
   .add('channels', folder => folder
-    .add('tasks', 'TextChannel', {
+    .add('tasklist', 'TextChannel', {
       default: null,
       configurable: true
     })

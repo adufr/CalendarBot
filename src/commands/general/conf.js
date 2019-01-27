@@ -5,7 +5,7 @@ module.exports = class extends Command {
     super(...args, {
       name: 'conf',
       cooldown: 5,
-      permissionLevel: 0,
+      permissionLevel: 6,
       aliases: ['configuration', 'config', 'cfg'],
       runIn: ['text'],
       description: 'Permet de configurer le bot',

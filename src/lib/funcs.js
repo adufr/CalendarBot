@@ -79,6 +79,35 @@ module.exports = {
     return embed
   },
 
+  // Builds the notification embed
+  getNotificationEmbed (client, channel) {
+    this.client = client
+
+    // If there are no tasks on this server
+    if (!channel.guild.settings.tasks || !channel.guild.settings.tasks[0]) return null
+
+    // Gets all tasks that are due to tomorrow
+    let embedDescription = ''
+    channel.guild.settings.tasks.forEach(task => {
+      if (moment(task.due_date, 'DD/MM/YY') <= moment().add(1, 'day')) {
+        embedDescription += `\n**\`${this.beautify(task.title, 14)}\`** - ${task.description}`
+      }
+    })
+
+    // If there are no tasks for tomorrow
+    if (!embedDescription) return null 
+
+    // Embed with tasks list
+    const embed = new MessageEmbed()
+      .setColor(4886754)
+      .setTitle('Tâches pour demain :')
+      .setDescription(embedDescription)
+      .setTimestamp()
+      .setFooter('Dernière mise-à-jour', this.client.user.displayAvatarURL())
+
+    return embed
+  },
+
   // Builds and returns a formatted string from the input
   formatDate (date, weekday) {
     let temp = date.toString().split('/')

@@ -95,10 +95,41 @@ module.exports = class extends Command {
 
     }
     // ===========================
-    // == other: help
+    // == helps to modify the conf:
+    // ===========================
+    else if (el === 'help' || el === 'h') {
+      message.reply("quelle catégorie d'élément souhaitez-vous configurer ? (possibilités : \`channel, role)\`)")
+    }
+    // ===========================
+    // == show conf: help
     // ===========================
     else {
-      message.reply(`quelle catégorie d'élément souhaitez-vous configurer ? (possibilités : \`channel, role)\`)`)
+      const stgs = message.guild.settings
+      
+      let res = `voici la configuration actuelle :\n` +
+        `\`${this.client.funcs.beautify('Channel tasklist', 24)}\` -> `
+      
+      if (stgs.channels && stgs.channels.tasklist) res += `<#${stgs.channels.tasklist}>`
+      else res += 'aucun'
+
+      res += `\n\`${this.client.funcs.beautify('Channel notifications', 24)}\` -> `
+
+      if (stgs.channels && stgs.channels.notifications) res += `<#${stgs.channels.notifications}>`
+      else res += 'aucun'
+
+      res += `\n\`${this.client.funcs.beautify('Rôle ajout de tâche', 24)}\` -> `
+
+      if (stgs.roles && stgs.roles.addtask) res += `@${message.guild.roles.find(r => r.id === stgs.roles.addtask).name}`
+      else res += 'everyone'
+
+      res += `\n\`${this.client.funcs.beautify('Rôle recevant les notifs', 24)}\` -> `
+
+      if (stgs.roles && stgs.roles.notify) res += `@${message.guild.roles.find(r => r.id === stgs.roles.notify).name}`
+      else res += 'aucun'
+
+      res += '\n\n(Pour voir comment modifier la configuration, faites `%conf help`)'
+
+      message.reply(res)
     }
   }
 }

@@ -23,7 +23,7 @@ module.exports = class extends Event {
 
     // initialize the Notifier task
     if (!this.client.schedule.tasks.some(task => task.taskName === 'notifier')) {
-      this.client.schedule.create('notifier', '0 1 * * *')
+      this.client.schedule.create('notifier', '0 18 * * *')
       this.client.console.log('Notifier has successfuly been initialized.')
     } else {
       this.client.console.log('Notifier already initialized.')

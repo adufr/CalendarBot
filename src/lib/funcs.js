@@ -19,6 +19,39 @@ module.exports = {
     return moment(a.due_date, 'DD-MM-YY') - moment(b.due_date, 'DD-MM-YY')
   },
 
+  // Updates the tasklist channel of a given guild
+  updateTasklistChannel (guildId) {
+    const guild = this.client.guilds.find(guild => guild.id === guildId)
+    if (!guild) this.client.console.error(`Tried to update a tasklist channel of an unknown guild (${guildId})`)
+
+    // if there is a configuredchannel
+    const channelId = guild.settings.channels.tasklist
+    if (!channelId) return
+    
+    // if the channel is valid
+    const channel = guild.channels.find(channel => channel.id === channelId)
+    if (!channel) return
+    
+    // if bot's last msg is already a tasklist: delete & post new one
+    // otherwise, do nothing but posting the new one
+    const lastMessage = channel.messages.last()
+    if (lastMessage && lastMessage.author.id === this.client.user.id) {
+      lastMessage.delete()
+    } 
+    
+    // Calls the Tasklist Embed builder
+    const embed = this.client.funcs.getTasklistEmbed(this.client, channel)
+    if (!embed) return
+    
+    channel.send(embed)
+      .then(() => {
+        this.client.console.log(`Updated tasklist channel of ${channel.guild.name} (${channel.guild.id})!`)
+      })
+      .catch((error) => {
+        this.client.console.error(`An error occured whilst tring update tasklist channel (${error})`)
+      })
+  },
+
   // Builds the tasklist embed
   getTasklistEmbed (client, channel) {
     this.client = client

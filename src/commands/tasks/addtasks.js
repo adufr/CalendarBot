@@ -38,6 +38,9 @@ module.exports = class extends Command {
       author: message.author.tag
     }
     await message.guild.settings.update('tasks', task)
-    return message.reply(`votre tâche : **${titre}**, pour le **${date}** a bien été ajoutée ! <:success:538698744921849876>`)
+    message.reply(`votre tâche : **${titre}**, pour le **${date}** a bien été ajoutée ! <:success:538698744921849876>`)
+
+    // update tasklist channel
+    await this.client.funcs.updateTasklistChannel(message.guild.id)
   }
 }

@@ -20,7 +20,9 @@ module.exports = {
   },
 
   // Updates the tasklist channel of a given guild
-  updateTasklistChannel (guildId) {
+  updateTasklistChannel (client, guildId) {
+    this.client = client
+
     const guild = this.client.guilds.find(guild => guild.id === guildId)
     if (!guild) this.client.console.error(`Tried to update a tasklist channel of an unknown guild (${guildId})`)
 

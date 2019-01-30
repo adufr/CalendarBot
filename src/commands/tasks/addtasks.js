@@ -41,6 +41,6 @@ module.exports = class extends Command {
     message.reply(`votre tâche : **${titre}**, pour le **${date}** a bien été ajoutée ! <:success:538698744921849876>`)
 
     // update tasklist channel
-    await this.client.funcs.updateTasklistChannel(message.guild.id)
+    await this.client.funcs.updateTasklistChannel(this.client, message.guild.id)
   }
 }

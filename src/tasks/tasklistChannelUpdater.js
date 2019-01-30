@@ -10,7 +10,7 @@ module.exports = class extends Task {
   // that has already configured it.
   async run() {
     this.client.guilds.forEach(guild => {
-      this.client.funcs.updateTasklistChannel(guild.id)
+      this.client.funcs.updateTasklistChannel(this.client, guild.id)
     })
   }
 

@@ -9,5 +9,8 @@ services:
       dockerfile: prod.dockerfile
     image: calendar-bot:0.2.0
     restart: always
+    volumes:
+      - ./src/bwd:/usr/src/app/src/bwd
+      - /usr/src/app/node_modules
     environment:
       - ENV=production

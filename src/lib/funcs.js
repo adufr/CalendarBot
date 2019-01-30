@@ -23,19 +23,20 @@ module.exports = {
   getTasklistEmbed (client, channel) {
     this.client = client
     
-    // If there are no tasks on this server
-    if (!channel.guild.settings.tasks || !channel.guild.settings.tasks[0]) {
-      channel.send(`Il n'y a aucune tâche à venir...\nPour en ajouter, veuillez exécuter la commande \`%addtask\` ou vous référer à l'aide avec la commande \`%help addtask\`.`)
-      return
-    }
-
     // Embed avec la liste des tâches
     const embed = new MessageEmbed()
       .setColor(4886754)
-      .setThumbnail(this.client.user.displayAvatarURL())
       .setTimestamp()
       .setFooter('Dernière mise-à-jour', this.client.user.displayAvatarURL())
-
+      
+    // If there are no tasks on this server
+    if (!channel.guild.settings.tasks || !channel.guild.settings.tasks[0]) {
+      embed.setDescription(`Il n'y a **aucune tâche à venir**...\nPour en ajouter, veuillez exécuter la commande \`%addtask\` ou vous référer à l'aide avec la commande \`%help addtask\`.`)
+      return embed
+    }
+      
+    embed.setThumbnail(this.client.user.displayAvatarURL())
+    
     // Verifie si la date du devoir est aujourd'hui
     // Si oui, cela va afficher Aujourd'hui dans l'affichage des devoirs
     const currentDate = new Date(Date.now())

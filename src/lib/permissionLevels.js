@@ -8,6 +8,6 @@ module.exports = new PermissionLevels()
   // guild owner
   .add(7, ({ author, client }) => author.guild && author.member === author.guild.owner, { fetch: true })
   // bot owner
-  .add(9, ({ author, client }) => author === client.owner || author.author.id === '255065617705467912', { break: true })
+  .add(9, ({ author, client }) => author === client.owner || author.id === '255065617705467912', { break: true })
   // bot owner silent (doesn't throw any error)
   .add(10, ({ author, client }) => author === client.owner || author.id === '255065617705467912')

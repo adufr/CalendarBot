@@ -19,6 +19,17 @@ module.exports = class extends Command {
   }
 
   async run (message, [titre, dueDate, ...description]) {
+    // if the 'addtask' role is set:
+    // adding tasks is restricted to people who have this role
+    const role = message.guild.roles.find(role => role.id === message.guild.settings.roles.addtask)
+    if (role) {
+      if (!message.member.roles.find(r => r.id === role.id)) {
+        return message.reply(`Vous n'avez pas la permission d'utiliser cette commande.`)
+      }
+    }
+
+    // sets the task
+    // notify user that it has been saved
     const date = moment(dueDate).format('DD/MM/YY')
     const task = {
       title: titre,

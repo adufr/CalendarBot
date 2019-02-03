@@ -1,0 +1,37 @@
+{
+  "name": "calendarbot",
+  "version": "0.2.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "./node_modules/.bin/nodemon --ignore ./src/bwd/ ./src/app.js",
+    "lint": "./node_modules/.bin/eslint ./ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Woosy/CalendarBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Woosy/CalendarBot/issues"
+  },
+  "homepage": "https://github.com/Woosy/CalendarBot#readme",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "klasa": "github:dirigeants/klasa#master",
+    "klasa-member-gateway": "github:dirigeants/klasa-member-gateway",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.9"
+  }
+}

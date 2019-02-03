@@ -1,0 +1,4 @@
+module.exports = {
+  // Token du bot (cf. https://discordapp.com/developers/applications/)
+  "token": "YOUR_DISCORD_TOKEN",
+}

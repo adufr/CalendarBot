@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  calendar-bot:
+    container_name: calendar-bot
+    hostname: calendar-bot
+    build: 
+      context: .
+      dockerfile: prod.dockerfile
+    image: calendar-bot:0.2.0
+    restart: always
+    volumes:
+      - ./src/bwd:/usr/src/app/src/bwd
+      - /usr/src/app/node_modules
+    environment:
+      - ENV=production

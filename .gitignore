@@ -2,7 +2,7 @@
 test.js
 
 # config file
-config.js
+.env
 
 # stored data
 bwd/

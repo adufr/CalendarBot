@@ -1,5 +1,4 @@
 const { Client } = require('klasa')
-const config = require('../../config')
 
 // Plugins
 Client.use(require('klasa-member-gateway'))
@@ -18,8 +17,6 @@ class CalendarBotClient extends Client {
       defaultGuildSchema
     })
     this.funcs = funcs
-    this.config = config
-    // this.logger = logger;
   }
 }
 

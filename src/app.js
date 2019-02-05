@@ -1,9 +1,9 @@
 const CalendarBotClient = require('./lib/CalendarBotClient')
 const packageJson = require('../package.json')
-const config = require('../config')
+const config = require('./lib/config')
 
 const client = new CalendarBotClient({
-  production: process.env.ENV === 'production',
+  production: config.node_env,
   ownerID: '255065617705467912',
   language: 'fr-FR',
   prefix: '%',
@@ -32,4 +32,4 @@ const client = new CalendarBotClient({
   consoleEvents: { verbose: true }
 })
 
-client.login(config.token)
+client.login()

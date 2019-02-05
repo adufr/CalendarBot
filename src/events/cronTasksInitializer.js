@@ -1,8 +1,7 @@
-const { Event } = require('klasa');
+const { Event } = require('klasa')
 
 module.exports = class extends Event {
-
-  constructor(...args) {
+  constructor (...args) {
     super(...args, {
       name: 'cronTasksInitializer',
       enabled: true,
@@ -11,8 +10,7 @@ module.exports = class extends Event {
     })
   }
 
-  run() {
-    
+  run () {
     // initialize the TasklistChannelUpdater task
     if (!this.client.schedule.tasks.some(task => task.taskName === 'tasklistChannelUpdater')) {
       this.client.schedule.create('tasklistChannelUpdater', '0 0 * * *')
@@ -28,7 +26,5 @@ module.exports = class extends Event {
     } else {
       this.client.console.log('Notifier already initialized.')
     }
-
   }
-
 }

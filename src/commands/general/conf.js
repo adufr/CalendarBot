@@ -9,12 +9,12 @@ module.exports = class extends Command {
       aliases: ['configuration', 'config', 'cfg'],
       runIn: ['text'],
       description: 'Permet de configurer le bot',
-      extendedHelp: "La commande conf permet de configurer le bot à votre guise.\n\n__Exemples de configuration :__\n" +
-      "```" +
-      "!conf channel tasklist #tasklist\n" +
-      "!conf channel notifications #notifs\n" +
-      "!conf role addtask <@Membre|everyone>\n" +
-      "!conf role notify <@role|everyone>```"
+      extendedHelp: 'La commande conf permet de configurer le bot à votre guise.\n\n__Exemples de configuration :__\n' +
+      '```' +
+      '!conf channel tasklist #tasklist\n' +
+      '!conf channel notifications #notifs\n' +
+      '!conf role addtask <@Membre|everyone>\n' +
+      '!conf role notify <@role|everyone>```'
     })
     this.usageCustom = 'cf. au-dessus'
     this.example = '%cfg channel tasklist #tasklist'
@@ -32,7 +32,6 @@ module.exports = class extends Command {
     // == channel configuration
     // ===========================
     if (el === 'channel' || el === 'salon' || el === 'chan') {
-
       switch (key) {
         // tasklist
         case 'tasklist':
@@ -42,7 +41,7 @@ module.exports = class extends Command {
           message.guild.settings.update('channels.tasklist', value.id)
           message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
           break
-        // notifications 
+        // notifications
         case 'notifications':
         case 'notification':
         case 'notifs':
@@ -57,14 +56,10 @@ module.exports = class extends Command {
           message.reply(`quelle channel souhaitez-vous configurer ? (possibilités : \`tasklist, notifications)\``)
           break
       }
-
-    }
-
     // ===========================
     // == role configuration
     // ===========================
-    else if (el === 'role' || el === 'rank' || el === 'role') {
-
+    } else if (el === 'role' || el === 'rank' || el === 'role') {
       switch (key) {
         // tasklist
         case 'addtask':
@@ -76,7 +71,7 @@ module.exports = class extends Command {
           message.guild.settings.update('roles.addtask', value.id || 'everyone')
           message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` pourront désormais ajouter des tâches ! <:success:538698744921849876>`)
           break
-        // notifications 
+        // notifications
         case 'notifications':
         case 'notification':
         case 'notify':
@@ -92,23 +87,20 @@ module.exports = class extends Command {
           message.reply(`quelle rôle souhaitez-vous configurer ? (possibilités : \`tasklist, notifications)\``)
           break
       }
-
-    }
     // ===========================
     // == helps to modify the conf:
     // ===========================
-    else if (el === 'help' || el === 'h') {
-      message.reply("quelle catégorie d'élément souhaitez-vous configurer ? (possibilités : \`channel, role)\`)")
-    }
+    } else if (el === 'help' || el === 'h') {
+      message.reply(`quelle catégorie d'élément souhaitez-vous configurer ? (possibilités : \`channel, role)\`)`)
     // ===========================
     // == show conf: help
     // ===========================
-    else {
+    } else {
       const stgs = message.guild.settings
-      
+
       let res = `voici la configuration actuelle :\n` +
         `\`${this.client.funcs.beautify('Channel tasklist', 24)}\` -> `
-      
+
       if (stgs.channels && stgs.channels.tasklist) res += `<#${stgs.channels.tasklist}>`
       else res += 'aucun'
 
@@ -134,10 +126,10 @@ module.exports = class extends Command {
   }
 }
 
-function getChannel(message, value) {
+function getChannel (message, value) {
   // if no value provided
   if (!value) {
-    message.reply(`veuillez spécifier un channel ! (\`nom, id, ou #mention\`)`) 
+    message.reply(`veuillez spécifier un channel ! (\`nom, id, ou #mention\`)`)
     return null
   }
   // if value is a channel
@@ -151,10 +143,10 @@ function getChannel(message, value) {
   }
 }
 
-function getRole(message, value) {
+function getRole (message, value) {
   // if no value provided
   if (!value) {
-    message.reply(`veuillez spécifier un rôle ! (\`nom, id, ou @mention\`)`) 
+    message.reply(`veuillez spécifier un rôle ! (\`nom, id, ou @mention\`)`)
     return null
   }
   // if value is a role

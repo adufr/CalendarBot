@@ -1,6 +1,6 @@
 {
   "name": "calendarbot",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/Woosy/CalendarBot#readme",
   "dependencies": {
+    "convict": "^4.4.1",
     "discord.js": "github:discordjs/discord.js",
+    "dotenv": "^6.2.0",
     "klasa": "github:dirigeants/klasa#master",
     "klasa-member-gateway": "github:dirigeants/klasa-member-gateway",
     "moment": "^2.22.2",

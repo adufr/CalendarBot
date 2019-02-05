@@ -24,11 +24,9 @@ module.exports = class extends Command {
     var role = await guild.roles.find(role => role.id === guild.settings.roles.notify)
     if (role) {
       return updateRole(message, role)
-    }
     // otherwise use the bot's default role
-    else {
-      
-      var role = await guild.roles.find(role => role.name === 'calendarbot_notify' === true)
+    } else {
+      role = await guild.roles.find(role => role.name === 'calendarbot_notify' === true)
       if (role == null || !guild.roles.has(role.id)) {
         // role creation
         await guild.roles.create({

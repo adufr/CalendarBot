@@ -29,22 +29,22 @@ module.exports = {
     // if there is a configuredchannel
     const channelId = guild.settings.channels.tasklist
     if (!channelId) return
-    
+
     // if the channel is valid
     const channel = guild.channels.find(channel => channel.id === channelId)
     if (!channel) return
-    
+
     // if bot's last msg is already a tasklist: delete & post new one
     // otherwise, do nothing but posting the new one
     const lastMessage = channel.messages.last()
     if (lastMessage && lastMessage.author.id === this.client.user.id) {
       lastMessage.delete()
-    } 
-    
+    }
+
     // Calls the Tasklist Embed builder
     const embed = this.client.funcs.getTasklistEmbed(this.client, channel)
     if (!embed) return
-    
+
     channel.send(embed)
       .then(() => {
         this.client.console.log(`Updated tasklist channel of ${channel.guild.name} (${channel.guild.id})!`)
@@ -57,21 +57,21 @@ module.exports = {
   // Builds the tasklist embed
   getTasklistEmbed (client, channel) {
     this.client = client
-    
+
     // Embed avec la liste des tâches
     const embed = new MessageEmbed()
       .setColor(4886754)
       .setTimestamp()
       .setFooter('Dernière mise-à-jour', this.client.user.displayAvatarURL())
-      
+
     // If there are no tasks on this server
     if (!channel.guild.settings.tasks || !channel.guild.settings.tasks[0]) {
       embed.setDescription(`Il n'y a **aucune tâche à venir**...\nPour en ajouter, veuillez exécuter la commande \`%addtask\` ou vous référer à l'aide avec la commande \`%help addtask\`.`)
       return embed
     }
-      
+
     embed.setThumbnail(this.client.user.displayAvatarURL())
-    
+
     // Verifie si la date du devoir est aujourd'hui
     // Si oui, cela va afficher Aujourd'hui dans l'affichage des devoirs
     const currentDate = new Date(Date.now())
@@ -131,7 +131,7 @@ module.exports = {
     })
 
     // If there are no tasks for tomorrow
-    if (!embedDescription) return null 
+    if (!embedDescription) return null
 
     // Embed with tasks list
     const embed = new MessageEmbed()

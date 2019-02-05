@@ -17,6 +17,8 @@ CalendarBot is also an open source project, which we started as a way to practic
 
 ---
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c71d2b94c25e463297b84a8c755337d7)](https://app.codacy.com/app/arthur-woosy/CalendarBot?utm_source=github.com&utm_medium=referral&utm_content=Woosy/CalendarBot&utm_campaign=Badge_Grade_Settings)
+
 
 ## Introduction
 

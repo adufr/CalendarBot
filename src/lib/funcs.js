@@ -36,10 +36,13 @@ module.exports = {
 
     // if bot's last msg is already a tasklist: delete & post new one
     // otherwise, do nothing but posting the new one
-    const lastMessage = channel.messages.last()
-    if (lastMessage && lastMessage.author.id === this.client.user.id) {
-      lastMessage.delete()
-    }
+    channel.messages.fetch({limit: 1})
+      .then(() => {
+        const lastMessage = channel.messages.last()
+        if (lastMessage && lastMessage.author.id === this.client.user.id) {
+          lastMessage.delete()
+        }
+      })
 
     // Calls the Tasklist Embed builder
     const embed = this.client.funcs.getTasklistEmbed(this.client, channel)

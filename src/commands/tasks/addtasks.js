@@ -8,7 +8,7 @@ module.exports = class extends Command {
       description: 'Rajoute une tâche',
       extendedHelp: 'Aucune aide complémentaire disponible.',
       cooldown: 5,
-      permissionLevel: 0,
+      permissionLevel: 1,
       aliases: ['addtasks', 'addtask', 'add', 'at'],
       runIn: ['text'],
       usage: '<titre:string> <due_date:date> [description:string] [...]',
@@ -20,13 +20,6 @@ module.exports = class extends Command {
 
   async run (message, [titre, dueDate, ...description]) {
     if (!dueDate) return
-
-    // if the 'addtask' role is set:
-    // adding tasks is restricted to people who have this role
-    const role = message.guild.roles.find(role => role.id === message.guild.settings.roles.addtask)
-    if (role && !message.member.roles.find(r => r.id === role.id)) {
-      return message.reply(`Vous n'avez pas la permission d'utiliser cette commande.`)
-    }
 
     // sets the task
     // notify user that it has been saved

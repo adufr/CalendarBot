@@ -11,8 +11,12 @@ module.exports = class extends Argument {
     if (date
       && !isNaN(date.getTime())
       && date.getTime() > Date.now()
-      && date.getTime() < new Date(new Date().setFullYear(new Date().getFullYear() + 2)).getTime())
+      && date.getTime() < new Date(new Date().setFullYear(new Date().getFullYear() + 2)).getTime()) {
       return date
-    else throw msg.reply(`la date indiquée n'est pas valide !`)
+    } else {
+      msg.reply(`la date indiquée n'est pas valide`)
+      return null
+      // throw msg.reply('not valid')
+    }
   }
 }

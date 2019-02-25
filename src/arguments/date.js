@@ -7,7 +7,16 @@ module.exports = class extends Argument {
     const date = moment(arg, 'DD/MM/YY').toDate()
     // if date is in the right format
     // if date is in the future
-    if (date && !isNaN(date.getTime()) && date.getTime() > Date.now()) return date
-    else throw msg.reply(`<@${msg.author.id}>, la date indiquée n'est pas valide !`)
+    // if date isn't in more than 2 years
+    if (date
+      && !isNaN(date.getTime())
+      && date.getTime() > Date.now()
+      && date.getTime() < new Date(new Date().setFullYear(new Date().getFullYear() + 2)).getTime()) {
+      return date
+    } else {
+      msg.reply(`la date indiquée n'est pas valide`)
+      return null
+      // throw msg.reply('not valid')
+    }
   }
 }

@@ -1,5 +1,5 @@
 const { Event } = require('klasa')
-
+const config = require('../lib/config')
 module.exports = class extends Event {
   constructor (...args) {
     super(...args, {
@@ -13,7 +13,11 @@ module.exports = class extends Event {
   run () {
     // initialize the TasklistChannelUpdater task
     if (!this.client.schedule.tasks.some(task => task.taskName === 'tasklistChannelUpdater')) {
-      this.client.schedule.create('tasklistChannelUpdater', '0 0 * * *')
+      if (config.node_env === 'production') {
+        this.client.schedule.create('tasklistChannelUpdater', '0 0 * * *')
+      } else {
+        this.client.schedule.create('tasklistChannelUpdater', '* * * * *')
+      }
       this.client.console.log('TasklistChannelUpdater has successfuly been initialized.')
     } else {
       this.client.console.log('TasklistChannelUpdater already initialized.')
@@ -21,7 +25,11 @@ module.exports = class extends Event {
 
     // initialize the Notifier task
     if (!this.client.schedule.tasks.some(task => task.taskName === 'notifier')) {
-      this.client.schedule.create('notifier', '0 18 * * *')
+      if (config.node_env === 'production') {
+        this.client.schedule.create('notifier', '0 18 * * *')
+      } else {
+        this.client.schedule.create('notifier', '* * * * *')
+      }
       this.client.console.log('Notifier has successfuly been initialized.')
     } else {
       this.client.console.log('Notifier already initialized.')

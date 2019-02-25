@@ -36,10 +36,13 @@ module.exports = {
 
     // if bot's last msg is already a tasklist: delete & post new one
     // otherwise, do nothing but posting the new one
-    const lastMessage = channel.messages.last()
-    if (lastMessage && lastMessage.author.id === this.client.user.id) {
-      lastMessage.delete()
-    }
+    channel.messages.fetch({limit: 1})
+      .then(() => {
+        const lastMessage = channel.messages.last()
+        if (lastMessage && lastMessage.author.id === this.client.user.id) {
+          lastMessage.delete()
+        }
+      })
 
     // Calls the Tasklist Embed builder
     const embed = this.client.funcs.getTasklistEmbed(this.client, channel)
@@ -66,7 +69,8 @@ module.exports = {
 
     // If there are no tasks on this server
     if (!channel.guild.settings.tasks || !channel.guild.settings.tasks[0]) {
-      embed.setDescription(`Il n'y a **aucune tâche à venir**...\nPour en ajouter, veuillez exécuter la commande \`%addtask\` ou vous référer à l'aide avec la commande \`%help addtask\`.`)
+      embed.setTitle('Aucune tâche trouvée !')
+      embed.setDescription(`Il n'y a actuellement **aucune tâche programmée**...\nPour en ajouter, veuillez exécuter la commande \`%addtask\` ou vous référer à l'aide avec la commande \`%help addtask\`.`)
       return embed
     }
 

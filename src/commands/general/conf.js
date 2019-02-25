@@ -1,4 +1,5 @@
 const { Command } = require('klasa')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = class extends Command {
   constructor (...args) {
@@ -97,31 +98,34 @@ module.exports = class extends Command {
     // ===========================
     } else {
       const stgs = message.guild.settings
+      let str
 
-      let res = `voici la configuration actuelle :\n` +
-        `\`${this.client.funcs.beautify('Channel tasklist', 24)}\` -> `
+      const embed = new MessageEmbed()
+        .setColor(4886754)
+        .setTitle('Configuration actuelle')
+        .setDescription('Tapez `%conf help` pour obtenir de l\'aide avec la configuration')
+        .setTimestamp()
+        .setFooter('Configuration', this.client.user.displayAvatarURL())
 
-      if (stgs.channels && stgs.channels.tasklist) res += `<#${stgs.channels.tasklist}>`
-      else res += 'aucun'
-
-      res += `\n\`${this.client.funcs.beautify('Channel notifications', 24)}\` -> `
-
-      if (stgs.channels && stgs.channels.notifications) res += `<#${stgs.channels.notifications}>`
-      else res += 'aucun'
-
-      res += `\n\`${this.client.funcs.beautify('Rôle ajout de tâche', 24)}\` -> `
-
-      if (stgs.roles && stgs.roles.addtask) res += `@${message.guild.roles.find(r => r.id === stgs.roles.addtask).name}`
-      else res += 'everyone'
-
-      res += `\n\`${this.client.funcs.beautify('Rôle recevant les notifs', 24)}\` -> `
-
-      if (stgs.roles && stgs.roles.notify) res += `@${message.guild.roles.find(r => r.id === stgs.roles.notify).name}`
-      else res += 'aucun'
-
-      res += '\n\n(Pour voir comment modifier la configuration, faites `%conf help`)'
-
-      message.reply(res)
+      // #tasklist
+      if (stgs.channels && stgs.channels.tasklist) str = `<#${stgs.channels.tasklist}>`
+      else str = 'aucun channel défini'
+      embed.addField('Channel tasklist', str, true)
+      // #notifications
+      if (stgs.channels && stgs.channels.notifications) str = `<#${stgs.channels.notifications}>`
+      else str = 'aucun channel défini'
+      embed.addField('Channel notifications', str, true)
+      
+      // @add_task
+      if (stgs.roles && stgs.roles.addtask) str = `@${message.guild.roles.find(r => r.id === stgs.roles.addtask).name}`
+      else str = '@everyone'
+      embed.addField('Rôle ajout de tâches', str, true)
+      // @notify
+      if (stgs.roles && stgs.roles.notify) str = `@${message.guild.roles.find(r => r.id === stgs.roles.notify).name}`
+      else str = 'aucun rôle défini'
+      embed.addField('Rôle recevant les notifs', str)
+      
+      message.channel.send(embed)
     }
   }
 }

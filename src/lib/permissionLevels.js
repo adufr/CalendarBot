@@ -4,7 +4,7 @@ module.exports = new PermissionLevels()
   // @everyone
   .add(0, () => true)
   // @add_tasks
-  .add(1, ({ guild, member }) => member.roles.find(r => r.id === guild.roles.find(role => role.id === guild.settings.roles.addtask).id))
+  .add(1, ({ guild, member }) => guild.settings.roles.addtask && member.roles.find(r => r.id === guild.roles.find(role => role.id === guild.settings.roles.addtask).id))
   // admins
   .add(6, ({ guild, member }) => guild && (member.permissions.has('MANAGE_GUILD') || member.permissions.has('ADMINISTRATOR')), { fetch: true })
   // guild owner

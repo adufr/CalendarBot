@@ -19,6 +19,10 @@ const client = new CalendarBotClient({
       quotedStringSupport: true
     }
   },
+  providers: {
+    default: 'rethinkdb',
+    rethinkdb: { db: 'calendarbot', servers: [{ host: config.database.host, port: config.database.port }] }
+  },
   presence: {
     activity: {
       type: 'WATCHING',

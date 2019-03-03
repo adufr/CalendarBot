@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [pre-release 0.3.0] - 2019-03-03 (not stable!)
+### (This version prepares for the upcoming 1.0.0)
+
+### Fixed
+- Error when using `%addtask` command while no role was set
+
+### Changed
+- Switched to a RethinkDB provider (NoSQL Database) for improved reliability and scaling possibilities
+
+---
+
 ## [pre-release 0.2.2] - 2019-02-25 (not stable!)
 ### Added
 - Dependabot badges in [README](https://github.com/Woosy/CalendarBot#readme)

@@ -15,16 +15,16 @@ RUN npm install
 COPY . . 
 
 # deletes all default klasa commands
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/blacklist.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/conf.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/disable.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/enable.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/load.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/reboot.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/reload.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/transfer.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/unload.js
-RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/Admin/unload.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/blacklist.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/conf.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/disable.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/enable.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/load.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/reboot.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/reload.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/transfer.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/unload.js
+RUN rm -r /usr/src/app/node_modules/klasa/src/commands/Admin/unload.js
 RUN rm -rdf /usr/src/app/node_modules/klasa/src/commands/General/*
 
 # runs the bot in production mode:

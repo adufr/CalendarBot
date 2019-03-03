@@ -25,7 +25,8 @@
     "klasa": "github:dirigeants/klasa#master",
     "klasa-member-gateway": "github:dirigeants/klasa-member-gateway",
     "moment": "^2.22.2",
-    "moment-duration-format": "^2.2.2"
+    "moment-duration-format": "^2.2.2",
+    "rethinkdbdash": "^2.3.31"
   },
   "devDependencies": {
     "eslint": "^5.15.0",

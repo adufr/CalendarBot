@@ -12,5 +12,11 @@ services:
     volumes:
       - ./src/bwd:/usr/src/app/src/bwd
       - /usr/src/app/node_modules
-    environment:
-      - ENV=production
+
+  database:
+    container_name: calendar-bot-database
+    hostname: calendar-bot-database
+    image: rethinkdb:2.3.6
+    restart: always
+    volumes:
+      - ./src/bwd/provider/rethinkdb:/data

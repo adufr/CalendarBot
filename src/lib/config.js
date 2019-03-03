@@ -13,6 +13,29 @@ const config = convict({
     format: String,
     default: null,
     env: 'DISCORD_TOKEN'
+  },
+  database: {
+    host: {
+      doc: 'The RethinkDB hostname',
+      format: String,
+      default: 'database',
+      arg: 'db_host',
+      env: 'DB_HOST'
+    },
+    port: {
+      doc: 'The RethinkDB port',
+      format: Number,
+      default: '28015',
+      arg: 'db_port',
+      env: 'DB_PORT'
+    },
+    name: {
+      doc: 'The RethinkDB database name',
+      format: String,
+      default: 'calendarbot',
+      arg: 'db_name',
+      env: 'DB_NAME'
+    }
   }
 })
 

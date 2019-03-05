@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "./node_modules/.bin/nodemon --ignore ./src/bwd/ ./src/app.js",
+    "test": "./node_modules/.bin/eslint ./",
     "lint": "./node_modules/.bin/eslint ./ --fix"
   },
   "repository": {

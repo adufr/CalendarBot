@@ -22,3 +22,5 @@ services:
     restart: on-failure
     volumes:
       - ./src/bwd/provider/rethinkdb:/data
+    ports:
+      - "8080:8080"

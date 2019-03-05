@@ -8,10 +8,10 @@ module.exports = class extends Argument {
     // if date is in the right format
     // if date is in the future
     // if date isn't in more than 2 years
-    if (date
-      && !isNaN(date.getTime())
-      && date.getTime() > Date.now()
-      && date.getTime() < new Date(new Date().setFullYear(new Date().getFullYear() + 2)).getTime()) {
+    if (date &&
+      !isNaN(date.getTime()) &&
+      date.getTime() > Date.now() &&
+      date.getTime() < new Date(new Date().setFullYear(new Date().getFullYear() + 2)).getTime()) {
       return date
     } else {
       msg.reply(`la date indiquée n'est pas valide`)

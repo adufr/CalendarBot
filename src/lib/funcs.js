@@ -36,7 +36,7 @@ module.exports = {
 
     // if bot's last msg is already a tasklist: delete & post new one
     // otherwise, do nothing but posting the new one
-    channel.messages.fetch({limit: 1})
+    channel.messages.fetch({ limit: 1 })
       .then(() => {
         const lastMessage = channel.messages.last()
         if (lastMessage && lastMessage.author.id === this.client.user.id) {

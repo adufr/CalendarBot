@@ -24,7 +24,7 @@ module.exports = class extends Task {
 
       // if bot's last msg is already a notification: delete & post new one
       // otherwise, do nothing but posting the new one
-      channel.messages.fetch({limit: 2}).then(messages => {
+      channel.messages.fetch({ limit: 2 }).then(messages => {
         messages.forEach(msg => {
           if (msg.author.id === this.client.user.id && (msg.embeds || msg.mentions.roles)) {
             msg.delete()

@@ -115,7 +115,7 @@ module.exports = class extends Command {
       if (stgs.channels && stgs.channels.notifications) str = `<#${stgs.channels.notifications}>`
       else str = 'aucun channel défini'
       embed.addField('Channel notifications', str, true)
-      
+
       // @add_task
       if (stgs.roles && stgs.roles.addtask) str = `@${message.guild.roles.find(r => r.id === stgs.roles.addtask).name}`
       else str = '@everyone'
@@ -124,7 +124,7 @@ module.exports = class extends Command {
       if (stgs.roles && stgs.roles.notify) str = `@${message.guild.roles.find(r => r.id === stgs.roles.notify).name}`
       else str = 'aucun rôle défini'
       embed.addField('Rôle recevant les notifs', str)
-      
+
       message.channel.send(embed)
     }
   }

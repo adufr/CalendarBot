@@ -20,7 +20,7 @@ module.exports = {
   },
 
   // Updates the tasklist channel of a given guild
-  updateTasklistChannel (client, guildId) {
+  async updateTasklistChannel (client, guildId) {
     this.client = client
 
     const guild = this.client.guilds.find(guild => guild.id === guildId)
@@ -45,7 +45,7 @@ module.exports = {
       })
 
     // Calls the Tasklist Embed builder
-    const embed = this.client.funcs.getTasklistEmbed(this.client, channel)
+    const embed = await this.client.funcs.getTasklistEmbed(this.client, channel)
     if (!embed) return
 
     channel.send(embed)
@@ -58,7 +58,7 @@ module.exports = {
   },
 
   // Builds the tasklist embed
-  getTasklistEmbed (client, channel) {
+  async getTasklistEmbed (client, channel) {
     this.client = client
 
     // Embed avec la liste des tâches

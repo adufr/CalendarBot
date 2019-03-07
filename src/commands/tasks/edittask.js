@@ -19,8 +19,8 @@ module.exports = class extends Command {
 
   async run (message, [index, key, ...newValue]) {
     if (!index) return message.reply('veuillez indiquer le numéro de la tâche que vous souhaitez modifier !')
-    if (!key || !['titre', 'title', 'date', 'description', 'desc'].includes(key.toLowerCase())) return message.reply(`veuillez spécifier le champ que vous souhaitez effectuer sur la tâche indiquée (\`titre/date/description\`)`)
-    if (!newValue) message.reply(`veuillez indiquer la nouvelle valeur du champ : ${key}`)
+    if (!key || !['titre', 'title', 'date', 'description', 'desc', 'all', '*'].includes(key.toLowerCase())) return message.reply(`veuillez spécifier le champ que vous souhaitez effectuer sur la tâche indiquée (\`titre/date/description\`)`)
+    if (!newValue) message.reply(`veuillez indiquer la nouvelle valeur du champ : \`${key}\``)
 
     const tasks = message.guild.settings.tasks
     tasks.sort(this.client.funcs.sortDueDates)
@@ -39,6 +39,18 @@ module.exports = class extends Command {
         break
       case 'description':
       case 'desc':
+        toEdit.description = newValue.join(' ')
+        break
+      case 'all':
+      case '*':
+        newValue = newValue[0].split(new RegExp(/ /g))
+        if (!newValue[0]) return message.reply(`veuillez spécifier le titre de votre tâche.`)
+        if (!newValue[1]) return message.reply(`veuillez indiquer la date de votre tâche \`(DD/MM/YY)\`.`)
+        if (!this.client.arguments.get('date').run(newValue[1], message)) return
+        toEdit.title = newValue[0]
+        newValue.shift()
+        toEdit.due_date = newValue[0]
+        newValue.shift()
         toEdit.description = newValue.join(' ')
         break
     }

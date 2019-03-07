@@ -39,8 +39,22 @@ module.exports = class extends Command {
         case 'tasks':
           value = getChannel(message, value)
           if (value === null) return
-          message.guild.settings.update('channels.tasklist', value.id)
-          message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
+          // reset to default's channel
+          if (value === 'reset') {
+            return message.guild.settings.reset('channels.tasklist').then(() => {
+              message.reply(`retour à la configuration par défaut : le calendrier ne s'affichera plus automatiquement ! <:success:538698744921849876>`)
+            }).catch((err) => {
+              this.client.console.error(err)
+              message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+            })
+          }
+          // change channel
+          message.guild.settings.update('channels.tasklist', value.id).then(() => {
+            message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
+          }).catch((err) => {
+            this.client.console.error(err)
+            message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+          })
           break
         // notifications
         case 'notifications':
@@ -49,8 +63,22 @@ module.exports = class extends Command {
         case 'notif':
           value = getChannel(message, value)
           if (value === null) return
-          message.guild.settings.update('channels.notifications', value.id)
-          message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
+          // reset to default's channel
+          if (value === 'reset') {
+            return message.guild.settings.reset('channels.notifications').then(() => {
+              message.reply(`retour à la configuration par défaut : plus de notifications ! <:success:538698744921849876>`)
+            }).catch((err) => {
+              this.client.console.error(err)
+              message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+            })
+          }
+          // change channel
+          message.guild.settings.update('channels.notifications', value.id).then(() => {
+            message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
+          }).catch((err) => {
+            this.client.console.error(err)
+            message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+          })
           break
         // invalid key
         default:
@@ -69,9 +97,22 @@ module.exports = class extends Command {
         case 'task':
           value = getRole(message, value)
           if (value === null) return
-          message.guild.settings.update('roles.addtask', value.id || 'everyone')
-          message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` pourront désormais ajouter des tâches ! <:success:538698744921849876>`)
-          break
+          // reset to default's role
+          if (value === 'reset') {
+            return message.guild.settings.reset('roles.addtask').then(() => {
+              message.reply(`retour à la configuration par défaut : tout le monde peut ajouter des tâches ! <:success:538698744921849876>`)
+            }).catch((err) => {
+              this.client.console.error(err)
+              message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+            })
+          }
+          // change role
+          return message.guild.settings.update('roles.addtask', value.id || 'everyone').then(() => {
+            message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` pourront désormais ajouter des tâches ! <:success:538698744921849876>`)
+          }).catch((err) => {
+            this.client.console.error(err)
+            message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+          })
         // notifications
         case 'notifications':
         case 'notification':
@@ -80,9 +121,22 @@ module.exports = class extends Command {
         case 'notif':
           value = getRole(message, value)
           if (value === null) return
-          message.guild.settings.update('roles.notify', value.id || 'everyone')
-          message.reply(`les personnes avec le role \`@${value.name || 'everyone'}\` recevront désormais des notifications ! <:success:538698744921849876>`)
-          break
+          // reset to default's role
+          if (value === 'reset') {
+            return message.guild.settings.reset('roles.notify').then(() => {
+              message.reply(`retour à la configuration par défaut : tout le monde peut ajouter des tâches ! <:success:538698744921849876>`)
+            }).catch((err) => {
+              this.client.console.error(err)
+              message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+            })
+          }
+          // change role
+          return message.guild.settings.update('roles.notify', value.id).then(() => {
+            message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` recevront désormais des notifications ! <:success:538698744921849876>`)
+          }).catch((err) => {
+            this.client.console.error(err)
+            message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+          })
         // invalid key
         default:
           message.reply(`quelle rôle souhaitez-vous configurer ? (possibilités : \`tasklist, notifications)\``)
@@ -136,6 +190,7 @@ function getChannel (message, value) {
     message.reply(`veuillez spécifier un channel ! (\`nom, id, ou #mention\`)`)
     return null
   }
+  if (value === 'reset') return value
   // if value is a channel
   if (message.guild.channels.find(channel => channel.name === value || channel.id === value)) {
     return message.guild.channels.find(channel => channel.name === value || channel.id === value)
@@ -153,6 +208,7 @@ function getRole (message, value) {
     message.reply(`veuillez spécifier un rôle ! (\`nom, id, ou @mention\`)`)
     return null
   }
+  if (value === 'reset') return value
   // if value is a role
   if (value === 'everyone' || value === 'all') {
     return 'everyone'

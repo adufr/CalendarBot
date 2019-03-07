@@ -31,7 +31,7 @@ module.exports = class extends Command {
     }
 
     if (!msg.guild.settings.channels.tasklist) {
-      return msg.reply(`aucun channel n'a été défini pour afficher la liste des tâches... <:error:538698717868458014>`)
+      return msg.reply(`aucun channel n'a été défini pour afficher la liste des tâches... ${this.client.emotes.error}`)
     }
 
     await this.client.funcs.updateTasklistChannel(this.client, msg.guild.id).then(() => {

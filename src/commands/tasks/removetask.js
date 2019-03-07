@@ -24,13 +24,13 @@ module.exports = class extends Command {
     tasks.sort(this.client.funcs.sortDueDates)
 
     const toRemove = tasks[index - 1]
-    if (!toRemove) return message.reply(`aucune tâche trouvée... (vérifiez l'index indiqué) <:error:538698717868458014>`)
+    if (!toRemove) return message.reply(`aucune tâche trouvée... (vérifiez l'index indiqué) ${this.client.emotes.error}`)
 
     await message.guild.settings.update('tasks', tasks[index - 1], { action: 'remove' }).then(() => {
-      message.reply(`la tâche **${toRemove.title}**  du **${toRemove.due_date}** a bien été supprimée ! <:success:538698744921849876>`)
+      message.reply(`la tâche **${toRemove.title}**  du **${toRemove.due_date}** a bien été supprimée ! ${this.client.emotes.success}`)
     }).catch((err) => {
       this.client.console.error(err)
-      message.reply('une erreur est survenue... <:error:538698717868458014>')
+      message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
     })
   }
 }

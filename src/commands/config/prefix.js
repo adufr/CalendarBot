@@ -20,19 +20,19 @@ module.exports = class extends Command {
     if (prefix === 'reset') return this.reset(message)
     if (message.guild.settings.prefix === prefix) throw message.language.get('CONFIGURATION_EQUALS')
     await message.guild.settings.update('prefix', prefix).then(() => {
-      return message.reply(`le préfixe a bien été changé pour \`${prefix}\` <:success:538698744921849876>`)
+      return message.reply(`le préfixe a bien été changé pour \`${prefix}\` ${this.client.emotes.success}`)
     }).catch((err) => {
       this.client.console.error(err)
-      return message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+      return message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
     })
   }
 
   async reset (message) {
     await message.guild.settings.reset('prefix').then(() => {
-      return message.reply(`le préfixe a été réinitialisé pour \`${this.client.options.prefix}\` <:success:538698744921849876>`)
+      return message.reply(`le préfixe a été réinitialisé pour \`${this.client.options.prefix}\` ${this.client.emotes.success}`)
     }).catch((err) => {
       this.client.console.error(err)
-      return message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+      return message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
     })
   }
 }

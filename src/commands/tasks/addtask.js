@@ -34,10 +34,10 @@ module.exports = class extends Command {
 
     await message.guild.settings.update('tasks', task).then(async () => {
       await this.client.funcs.updateTasklistChannel(this.client, message.guild.id)
-      message.reply(`votre tâche : **${titre}**, pour le **${date}** a bien été ajoutée ! <:success:538698744921849876>`)
+      message.reply(`votre tâche : **${titre}**, pour le **${date}** a bien été ajoutée ! ${this.client.emotes.success}`)
     }).catch((err) => {
       this.client.console.error(err)
-      message.reply('une erreur est survenue... <:error:538698717868458014>')
+      message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
     })
   }
 }

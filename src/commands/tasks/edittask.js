@@ -26,7 +26,7 @@ module.exports = class extends Command {
     tasks.sort(this.client.funcs.sortDueDates)
 
     const toEdit = tasks[index - 1]
-    if (!toEdit) return message.reply(`aucune tâche trouvée... (vérifiez l'index indiqué) <:error:538698717868458014>`)
+    if (!toEdit) return message.reply(`aucune tâche trouvée... (vérifiez l'index indiqué) ${this.client.emotes.error}`)
 
     switch (key) {
       case 'titre':
@@ -57,11 +57,11 @@ module.exports = class extends Command {
 
     await message.guild.settings.update('tasks', tasks[index - 1], { action: 'remove' }).then(async () => {
       await message.guild.settings.update('tasks', toEdit).then(() => {
-        message.reply(`la tâche **${toEdit.title}**  du **${toEdit.due_date}** a bien été modifiée ! <:success:538698744921849876>`)
+        message.reply(`la tâche **${toEdit.title}**  du **${toEdit.due_date}** a bien été modifiée ! ${this.client.emotes.success}`)
       })
     }).catch((err) => {
       this.client.console.error(err)
-      message.reply('une erreur est survenue... <:error:538698717868458014>')
+      message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
     })
   }
 }

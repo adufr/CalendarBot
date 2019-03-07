@@ -42,18 +42,18 @@ module.exports = class extends Command {
           // reset to default's channel
           if (value === 'reset') {
             return message.guild.settings.reset('channels.tasklist').then(() => {
-              message.reply(`retour à la configuration par défaut : le calendrier ne s'affichera plus automatiquement ! <:success:538698744921849876>`)
+              message.reply(`retour à la configuration par défaut : le calendrier ne s'affichera plus automatiquement ! ${this.client.emotes.success}`)
             }).catch((err) => {
               this.client.console.error(err)
-              message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+              message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
             })
           }
           // change channel
           return message.guild.settings.update('channels.tasklist', value.id).then(() => {
-            message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
+            message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! ${this.client.emotes.success}`)
           }).catch((err) => {
             this.client.console.error(err)
-            message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+            message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
           })
         // notifications
         case 'notifications':
@@ -65,18 +65,18 @@ module.exports = class extends Command {
           // reset to default's channel
           if (value === 'reset') {
             return message.guild.settings.reset('channels.notifications').then(() => {
-              message.reply(`retour à la configuration par défaut : plus de notifications ! <:success:538698744921849876>`)
+              message.reply(`retour à la configuration par défaut : plus de notifications ! ${this.client.emotes.success}`)
             }).catch((err) => {
               this.client.console.error(err)
-              message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+              message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
             })
           }
           // change channel
           return message.guild.settings.update('channels.notifications', value.id).then(() => {
-            message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
+            message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name}\` ! ${this.client.emotes.success}`)
           }).catch((err) => {
             this.client.console.error(err)
-            message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+            message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
           })
         // invalid key
         default:
@@ -98,18 +98,18 @@ module.exports = class extends Command {
           // reset to default's role
           if (value === 'reset') {
             return message.guild.settings.reset('roles.addtask').then(() => {
-              message.reply(`retour à la configuration par défaut : tout le monde peut ajouter des tâches ! <:success:538698744921849876>`)
+              message.reply(`retour à la configuration par défaut : tout le monde peut ajouter des tâches ! ${this.client.emotes.success}`)
             }).catch((err) => {
               this.client.console.error(err)
-              message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+              message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
             })
           }
           // change role
           return message.guild.settings.update('roles.addtask', value.id || 'everyone').then(() => {
-            message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` pourront désormais ajouter des tâches ! <:success:538698744921849876>`)
+            message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` pourront désormais ajouter des tâches ! ${this.client.emotes.success}`)
           }).catch((err) => {
             this.client.console.error(err)
-            message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+            message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
           })
         // notifications
         case 'notifications':
@@ -122,18 +122,18 @@ module.exports = class extends Command {
           // reset to default's role
           if (value === 'reset') {
             return message.guild.settings.reset('roles.notify').then(() => {
-              message.reply(`retour à la configuration par défaut : tout le monde peut ajouter des tâches ! <:success:538698744921849876>`)
+              message.reply(`retour à la configuration par défaut : tout le monde peut ajouter des tâches ! ${this.client.emotes.success}`)
             }).catch((err) => {
               this.client.console.error(err)
-              message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+              message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
             })
           }
           // change role
           return message.guild.settings.update('roles.notify', value.id).then(() => {
-            message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` recevront désormais des notifications ! <:success:538698744921849876>`)
+            message.reply(`les personnes avec le rôle \`@${value.name || 'everyone'}\` recevront désormais des notifications ! ${this.client.emotes.success}`)
           }).catch((err) => {
             this.client.console.error(err)
-            message.reply(`une erreur est survenue... <:error:538698717868458014>`)
+            message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
           })
         // invalid key
         default:

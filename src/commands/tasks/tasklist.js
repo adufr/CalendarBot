@@ -16,13 +16,17 @@ module.exports = class extends Command {
     this.example = '%tasklist'
   }
 
+  run (message, [type, ...params]) {
+    return this[type](message, params)
+  }
+
   async show (msg) {
     const embed = await this.client.funcs.getTasklistEmbed(this.client, msg.channel)
     if (embed) msg.send(embed)
   }
 
   async update (msg) {
-    if (!msg.hasAtLeastPermissionLevel(5)) {
+    if (!await msg.hasAtLeastPermissionLevel(5)) {
       return msg.reply(msg.language.get('INHIBITOR_PERMISSIONS'))
     }
 

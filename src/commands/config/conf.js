@@ -49,13 +49,12 @@ module.exports = class extends Command {
             })
           }
           // change channel
-          message.guild.settings.update('channels.tasklist', value.id).then(() => {
+          return message.guild.settings.update('channels.tasklist', value.id).then(() => {
             message.reply(`la liste des tâches s'affichera désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
           }).catch((err) => {
             this.client.console.error(err)
             message.reply(`une erreur est survenue... <:error:538698717868458014>`)
           })
-          break
         // notifications
         case 'notifications':
         case 'notification':
@@ -73,13 +72,12 @@ module.exports = class extends Command {
             })
           }
           // change channel
-          message.guild.settings.update('channels.notifications', value.id).then(() => {
+          return message.guild.settings.update('channels.notifications', value.id).then(() => {
             message.reply(`les notifications s'afficheront désormais dans le channel \`#${value.name}\` ! <:success:538698744921849876>`)
           }).catch((err) => {
             this.client.console.error(err)
             message.reply(`une erreur est survenue... <:error:538698717868458014>`)
           })
-          break
         // invalid key
         default:
           message.reply(`quelle channel souhaitez-vous configurer ? (possibilités : \`tasklist, notifications)\``)

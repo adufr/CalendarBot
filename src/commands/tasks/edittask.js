@@ -34,6 +34,7 @@ module.exports = class extends Command {
         toEdit.title = newValue
         break
       case 'date':
+        if (!this.client.arguments.get('date').run(newValue, message)) return
         toEdit.due_date = newValue
         break
       case 'description':

@@ -29,7 +29,7 @@ module.exports = class extends Command {
       title: titre,
       due_date: date,
       description: description.join(' '),
-      author: message.author.tag
+      author: message.author.id
     }
 
     await message.guild.settings.update('tasks', task).then(async () => {

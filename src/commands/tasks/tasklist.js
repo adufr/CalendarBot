@@ -22,6 +22,14 @@ module.exports = class extends Command {
   }
 
   async update (msg) {
+    if (!msg.hasAtLeastPermissionLevel(5)) {
+      return msg.reply(msg.language.get('INHIBITOR_PERMISSIONS'))
+    }
+
+    if (!msg.guild.settings.channels.tasklist) {
+      return msg.reply(`aucun channel n'a été défini pour afficher la liste des tâches... <:error:538698717868458014>`)
+    }
+
     await this.client.funcs.updateTasklistChannel(this.client, msg.guild.id).then(() => {
       return msg.reply(`le calendrier a bien été mis-à-jour !`)
     }).catch((err) => {

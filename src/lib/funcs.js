@@ -100,18 +100,18 @@ module.exports = {
       embed.fields.forEach((field) => {
         // if there's already a field with this date
         if (field.name === formatedDate || (field.name === "Aujourd'hui :" && date === aujourdhui) || (field.name === 'Demain :' && date === demain)) {
-          field.value += `\n**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`
+          field.value += `\n**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`
           changed = true
         }
       })
 
       if (!changed) {
         if (date === aujourdhui) {
-          embed.addField(`Aujourd'hui :`, `**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`)
+          embed.addField(`Aujourd'hui :`, `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)
         } else if (date === demain) {
-          embed.addField('Demain :', `**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`)
+          embed.addField('Demain :', `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)
         } else {
-          embed.addField(formatedDate, '**`' + this.client.funcs.beautify(task.title, 14) + '`** - ' + task.description)
+          embed.addField(formatedDate, `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)
         }
       }
     })

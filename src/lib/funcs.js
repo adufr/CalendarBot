@@ -20,7 +20,7 @@ module.exports = {
   },
 
   // Updates the tasklist channel of a given guild
-  updateTasklistChannel (client, guildId) {
+  async updateTasklistChannel (client, guildId) {
     this.client = client
 
     const guild = this.client.guilds.find(guild => guild.id === guildId)
@@ -36,7 +36,7 @@ module.exports = {
 
     // if bot's last msg is already a tasklist: delete & post new one
     // otherwise, do nothing but posting the new one
-    channel.messages.fetch({limit: 1})
+    channel.messages.fetch({ limit: 1 })
       .then(() => {
         const lastMessage = channel.messages.last()
         if (lastMessage && lastMessage.author.id === this.client.user.id) {
@@ -45,7 +45,7 @@ module.exports = {
       })
 
     // Calls the Tasklist Embed builder
-    const embed = this.client.funcs.getTasklistEmbed(this.client, channel)
+    const embed = await this.client.funcs.getTasklistEmbed(this.client, channel)
     if (!embed) return
 
     channel.send(embed)
@@ -58,7 +58,7 @@ module.exports = {
   },
 
   // Builds the tasklist embed
-  getTasklistEmbed (client, channel) {
+  async getTasklistEmbed (client, channel) {
     this.client = client
 
     // Embed avec la liste des tâches
@@ -100,18 +100,18 @@ module.exports = {
       embed.fields.forEach((field) => {
         // if there's already a field with this date
         if (field.name === formatedDate || (field.name === "Aujourd'hui :" && date === aujourdhui) || (field.name === 'Demain :' && date === demain)) {
-          field.value += `\n**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`
+          field.value += `\n**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`
           changed = true
         }
       })
 
       if (!changed) {
         if (date === aujourdhui) {
-          embed.addField(`Aujourd'hui :`, `**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`)
+          embed.addField(`Aujourd'hui :`, `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)
         } else if (date === demain) {
-          embed.addField('Demain :', `**\`${this.client.funcs.beautify(task.title, 14)}\`** - ${task.description || 'Aucune description'}`)
+          embed.addField('Demain :', `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)
         } else {
-          embed.addField(formatedDate, '**`' + this.client.funcs.beautify(task.title, 14) + '`** - ' + task.description)
+          embed.addField(formatedDate, `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)
         }
       }
     })

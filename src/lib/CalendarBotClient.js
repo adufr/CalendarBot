@@ -14,9 +14,11 @@ class CalendarBotClient extends Client {
   constructor (options) {
     super({ ...options,
       permissionLevels,
-      defaultGuildSchema
+      defaultGuildSchema,
+      disabledCorePieces: ['commands']
     })
     this.funcs = funcs
+    this.emotes = { succes: '<:success:538698744921849876>', error: '<:error:538698717868458014>' }
   }
 }
 

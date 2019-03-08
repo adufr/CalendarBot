@@ -48,7 +48,8 @@ module.exports = class extends Command {
     const client = this.client
     Promise.all([
       loadCommands(this, client, path.join(__dirname, '../tasks/')),
-      loadCommands(this, client, __dirname)
+      loadCommands(this, client, __dirname),
+      loadCommands(this, client, path.join(__dirname, '../config/'))
     ]).then(function (responses) {
       const embed = new MessageEmbed()
         .setColor('#3586ff')
@@ -56,6 +57,7 @@ module.exports = class extends Command {
         .setDescription('Voici la liste des commandes du bot, classées par catégories.')
         .addField('Commandes calendrier :', responses[0])
         .addField('Commandes générales :', responses[1])
+        .addField('Commandes configuration :', responses[2])
         .setTimestamp()
         .setFooter(client.user.username, client.user.displayAvatarURL())
       return message.channel.send(embed)

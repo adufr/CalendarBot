@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.codacy.com/app/arthur-woosy/CalendarBot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Woosy/CalendarBot&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/0930314267f24a319492b79d9d5e3e90"/></a>
-  <a href="https://travis-ci.com/Woosy/CalendarBot"><img src="https://travis-ci.com/Woosy/CalendarBot.svg?token=hs9zzVRsbjobLodxapzr&branch=master" alt="Build Status"></a>
+  <a href="https://travis-ci.com/Woosy/CalendarBot"><img src="https://travis-ci.com/Woosy/CalendarBot.svg?token=hs9zzVRsbjobLodxapzr&branch=develop" alt="Build Status of develop branch"></a>
   <a href="https://dependabot.com/"><img src="https://api.dependabot.com/badges/status?host=github&amp;repo=Woosy/CalendarBot" alt="Dependabot Status"></a>
   <a href="https://dependabot.com/"><img src="https://img.shields.io/david/Woosy/CalendarBot.svg?maxAge=3600" alt="Dependencies status"></a>
   <br>

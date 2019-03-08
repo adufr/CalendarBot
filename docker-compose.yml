@@ -6,14 +6,15 @@ services:
     hostname: calendar-bot
     build: 
       context: .
-      dockerfile: dev.dockerfile
-    image: calendar-bot:0.3.0
+      dockerfile: Dockerfile
+    image: calendar-bot:0.4.0
     restart: on-failure
     volumes:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - database
+    command: npm run dev
 
   database:
     container_name: calendar-bot-database
@@ -22,3 +23,5 @@ services:
     restart: on-failure
     volumes:
       - ./src/bwd/provider/rethinkdb:/data
+    ports:
+      - "8080:8080"

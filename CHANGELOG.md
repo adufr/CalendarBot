@@ -6,6 +6,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [pre-release 0.4.0] - 2019-03-03 (now stable!)
+### (This version prepares for the upcoming 1.0.0)
+### (It also breaks a lot of previously existing features)
+
+### Added
+- `%task edit` command, to edit existing tasks
+- `%prefix` command for per-guild prefix configuration (mods)
+- `%conf` added a "reset" possibility to each entry (eg: `%conf channel tasklist reset`)
+- `%tasklist update` to manually update the tasklist channel (mods)
+- Continuous Integration using [Travis-CI](https://travis-ci.com/Woosy/CalendarBot)
+
+### Fixed
+- Fixed some random bugs
+
+### Changed
+- All tasks related commands are now regrouped in `%task` command
+- Improved `%tasklist` display when a task doesn't have any description
+- Improved code quality
+
+---
+
 ## [pre-release 0.3.0] - 2019-03-03 (not stable!)
 ### (This version prepares for the upcoming 1.0.0)
 

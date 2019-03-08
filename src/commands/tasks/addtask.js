@@ -19,21 +19,25 @@ module.exports = class extends Command {
   }
 
   async run (message, [titre, dueDate, ...description]) {
-    if (!dueDate) return
+    if (!titre) return message.reply('veuillez indiquer le titre de votre tâche !')
+    if (!dueDate) return message.reply('veuillez indiquer la date de votre tâche (`DD/MM/YY`) !')
 
     // sets the task
     // notify user that it has been saved
-    const date = moment(dueDate).format('DD/MM/YY')
+    const date = moment(dueDate, 'DD/MM/YY').format('DD/MM/YY')
     const task = {
       title: titre,
       due_date: date,
       description: description.join(' '),
-      author: message.author.tag
+      author: message.author.id
     }
-    await message.guild.settings.update('tasks', task)
-    message.reply(`votre tâche : **${titre}**, pour le **${date}** a bien été ajoutée ! <:success:538698744921849876>`)
 
-    // update tasklist channel
-    await this.client.funcs.updateTasklistChannel(this.client, message.guild.id)
+    await message.guild.settings.update('tasks', task).then(async () => {
+      await this.client.funcs.updateTasklistChannel(this.client, message.guild.id)
+      message.reply(`votre tâche : **${titre}**, pour le **${date}** a bien été ajoutée ! ${this.client.emotes.success}`)
+    }).catch((err) => {
+      this.client.console.error(err)
+      message.reply(`une erreur est survenue... ${this.client.emotes.error}`)
+    })
   }
 }

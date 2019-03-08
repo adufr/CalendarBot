@@ -6,12 +6,13 @@ services:
     hostname: calendar-bot
     build: 
       context: .
-      dockerfile: prod.dockerfile
+      dockerfile: Dockerfile
     image: calendar-bot:0.3.0
     restart: always
     volumes:
       - ./src/bwd:/usr/src/app/src/bwd
       - /usr/src/app/node_modules
+    command: node src/app.js
 
   database:
     container_name: calendar-bot-database

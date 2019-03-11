@@ -15,6 +15,7 @@ module.exports = class extends Command {
     })
     this.usageCustom = '%removetask <index:int>'
     this.example = '%task remove 2'
+    this.hidden = true
   }
 
   async run (message, [index]) {

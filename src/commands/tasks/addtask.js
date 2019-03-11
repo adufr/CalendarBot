@@ -16,6 +16,7 @@ module.exports = class extends Command {
     })
     this.usageCustom = '%addtask <titre:string> <dueDate:string> [description:string]'
     this.example = "%addtask Maths 28/10/18 Faire l'exercice 69 de la page 420."
+    this.hidden = true
   }
 
   async run (message, [titre, dueDate, ...description]) {

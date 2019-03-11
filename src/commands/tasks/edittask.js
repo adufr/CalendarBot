@@ -15,6 +15,7 @@ module.exports = class extends Command {
     })
     this.usageCustom = '%edit <index:int> <key:string> <newValue:string>'
     this.example = '%task edit 2 title Mathématiques'
+    this.hidden = true
   }
 
   async run (message, [index, key, ...newValue]) {

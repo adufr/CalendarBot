@@ -14,6 +14,7 @@ module.exports = class extends Command {
     })
     this.usageCustom = '%tasklist'
     this.example = '%tasklist'
+    this.hidden = true
   }
 
   run (message, [type, ...params]) {

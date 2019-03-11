@@ -83,8 +83,10 @@ function loadCommands (command, client, commandsPath) {
       let description = ''
       // for each command
       jsFiles.forEach((f, i) => {
-        var command = client.commands.get(f.split('.')[0])
-        description += `\`%${client.funcs.beautify(`${command}`, 15)}\` - ${command.description}\n`
+        let command = client.commands.get(f.split('.')[0])
+        if (!command.hidden) {
+          description += `\`%${client.funcs.beautify(`${command}`, 15)}\` - ${command.description}\n`
+        }
       })
       resolve(description)
     })

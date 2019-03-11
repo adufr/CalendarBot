@@ -35,7 +35,7 @@ module.exports = class extends Command {
     }
 
     await this.client.funcs.updateTasklistChannel(this.client, msg.guild.id).then(() => {
-      return msg.reply(`le calendrier a bien été mis-à-jour !`)
+      return msg.reply(`le calendrier a bien été mis-à-jour ! ${this.client.emotes.success}`)
     }).catch((err) => {
       this.client.console.error(err)
       return msg.reply(`une erreur est survenue lors de la mise-à-jour du calendrier`)

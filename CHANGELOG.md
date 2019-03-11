@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [pre-release 0.4.1] - 2019-03-03
+
+### Fixed
+- Bot emotes were not showing (got undefined instead)
+- Removed some commands from the `%help`
+- Tasklist channel now updates correctly after task edit
+
+---
+
 ## [pre-release 0.4.0] - 2019-03-03 (now stable!)
 ### (This version prepares for the upcoming 1.0.0)
 ### (It also breaks a lot of previously existing features)

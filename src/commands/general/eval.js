@@ -9,10 +9,10 @@ module.exports = class extends Command {
       description: language => language.get('COMMAND_EVAL_DESCRIPTION'),
       extendedHelp: language => language.get('COMMAND_EVAL_EXTENDED'),
       guarded: true,
-      hidden: true,
       permissionLevel: 10,
       usage: '<expression:str>'
     })
+    this.hidden = true
   }
 
   async run (msg, [code]) {

@@ -18,7 +18,7 @@ class CalendarBotClient extends Client {
       disabledCorePieces: ['commands']
     })
     this.funcs = funcs
-    this.emotes = { succes: '<:success:538698744921849876>', error: '<:error:538698717868458014>' }
+    this.emotes = { success: '<:success:538698744921849876>', error: '<:error:538698717868458014>' }
   }
 }
 

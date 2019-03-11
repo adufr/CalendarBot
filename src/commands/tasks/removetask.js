@@ -15,6 +15,7 @@ module.exports = class extends Command {
     })
     this.usageCustom = '%removetask <index:int>'
     this.example = '%task remove 2'
+    this.hidden = true
   }
 
   async run (message, [index]) {
@@ -26,7 +27,8 @@ module.exports = class extends Command {
     const toRemove = tasks[index - 1]
     if (!toRemove) return message.reply(`aucune tâche trouvée... (vérifiez l'index indiqué) ${this.client.emotes.error}`)
 
-    await message.guild.settings.update('tasks', tasks[index - 1], { action: 'remove' }).then(() => {
+    await message.guild.settings.update('tasks', tasks[index - 1], { action: 'remove' }).then(async () => {
+      await this.client.funcs.updateTasklistChannel(this.client, message.guild.id)
       message.reply(`la tâche **${toRemove.title}**  du **${toRemove.due_date}** a bien été supprimée ! ${this.client.emotes.success}`)
     }).catch((err) => {
       this.client.console.error(err)

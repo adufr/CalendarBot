@@ -57,7 +57,8 @@ module.exports = class extends Command {
     }
 
     await message.guild.settings.update('tasks', tasks[index - 1], { action: 'remove' }).then(async () => {
-      await message.guild.settings.update('tasks', toEdit).then(() => {
+      await message.guild.settings.update('tasks', toEdit).then(async () => {
+        await this.client.funcs.updateTasklistChannel(this.client, message.guild.id)
         message.reply(`la tâche **${toEdit.title}**  du **${toEdit.due_date}** a bien été modifiée ! ${this.client.emotes.success}`)
       })
     }).catch((err) => {

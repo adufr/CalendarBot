@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [pre-release 0.4.2] - 2019-03-03
+
+### Fixed
+- Tasklist doesn't show expired tasks anymore
+- `%task edit` doesn't replace spaces w/ commas anymore
+
+--- 
+
 ## [pre-release 0.4.1] - 2019-03-03
 
 ### Fixed

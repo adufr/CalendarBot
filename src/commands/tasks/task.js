@@ -33,7 +33,7 @@ module.exports = class extends Command {
   // == Add a task
   // ================================================
   async add (message, [titre, dueDate, ...description]) {
-    return this.client.commands.get('addtask').run(message, [titre, dueDate, description])
+    return this.client.commands.get('addtask').run(message, [titre, dueDate, description.join(' ')])
   }
 
   // ================================================

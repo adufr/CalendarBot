@@ -87,7 +87,7 @@ module.exports = {
 
     // Retrieves all guild's tasks
     // and sorts them by date
-    const tasks = channel.guild.settings.tasks
+    const tasks = channel.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY') > Date.now())
     tasks.sort(this.client.funcs.sortDueDates)
     tasks.forEach(task => {
       // task date

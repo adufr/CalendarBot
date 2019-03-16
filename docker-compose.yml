@@ -7,7 +7,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    image: calendar-bot:0.4.2
+    image: calendar-bot:0.4.3
     restart: on-failure
     volumes:
       - ./:/usr/src/app

@@ -9,7 +9,7 @@ module.exports = class extends Task {
   // "tomorrow", if yes, sends a notification
   // to the appropriate channel.
   async run () {
-    this.client.guilds.forEach(guild => {
+    this.client.guilds.forEach(async (guild) => {
       // if there is a configuredchannel
       const channelId = guild.settings.channels.notifications
       if (!channelId) return
@@ -24,12 +24,18 @@ module.exports = class extends Task {
 
       // if bot's last msg is already a notification: delete & post new one
       // otherwise, do nothing but posting the new one
-      channel.messages.fetch({ limit: 2 }).then(messages => {
-        messages.forEach(msg => {
-          if (msg.author.id === this.client.user.id && (msg.embeds || msg.mentions.roles)) {
-            msg.delete()
+      await channel.messages.fetch({ limit: 2 }).then(async (messages) => {
+        // console.log(messages)
+        let msg = messages.first()
+        // console.log(messages)
+        // console.log(messages.first())
+        if (msg && msg.author.id === this.client.user.id) {
+          await msg.delete().catch(err => console.log(err))
+          msg = messages.first(2)[1]
+          if (msg && msg.author.id === this.client.user.id) {
+            await msg.delete().catch(err => console.log(err + '2'))
           }
-        })
+        }
       })
 
       const roleId = guild.settings.roles.notify

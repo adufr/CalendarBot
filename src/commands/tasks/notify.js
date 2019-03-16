@@ -16,14 +16,13 @@ module.exports = class extends Command {
   }
 
   async run (message) {
-    if (!message.guild) return
-
     const guild = message.guild
+    if (!guild) return
 
     // if there is a configured role
-    var role = await guild.roles.find(role => role.id === guild.settings.roles.notify)
+    let role = await guild.roles.find(role => role.id === guild.settings.roles.notify)
     if (role) {
-      return updateRole(message, role)
+      return updateRole(this.client, message, role)
     // otherwise use the bot's default role
     } else {
       role = await guild.roles.find(role => role.name === 'calendarbot_notify' === true)
@@ -36,14 +35,14 @@ module.exports = class extends Command {
           }
         }).then((result) => {
           // sets the role to the user
-          return updateRole(message, result.id)
+          return updateRole(this.client, message, result.id)
         }).catch((err) => {
           this.client.console.error(err)
           return message.reply('une erreur est survenue...\nSi cela persiste, rejoignez le discord de support ! discord.gg/ff4f52s')
         })
       } else {
         // sets the role to the user
-        return updateRole(message, role)
+        return updateRole(this.client, message, role)
       }
     }
   }
@@ -51,13 +50,13 @@ module.exports = class extends Command {
 
 // Updates user's role depending of him
 // already having it or not
-function updateRole (message, role) {
+function updateRole (client, message, role) {
   // if he already has the role
   if (message.member.roles.find(val => val.id === role.id)) {
     message.member.roles.remove(role)
-    return message.reply(`vous **ne recevrez plus** de notifications. ${this.client.emotes.success}`)
+    return message.reply(`vous **ne recevrez plus** de notifications. ${client.emotes.success}`)
   } else {
     message.member.roles.add(role)
-    return message.reply(`vous **serez notifié** des devoirs à faire à J-1. ${this.client.emotes.success}`)
+    return message.reply(`vous **serez notifié** des devoirs à faire à J-1. ${client.emotes.success}`)
   }
 }

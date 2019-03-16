@@ -78,16 +78,16 @@ module.exports = {
 
     // Verifie si la date du devoir est aujourd'hui
     // Si oui, cela va afficher Aujourd'hui dans l'affichage des devoirs
-    const currentDate = new Date(Date.now())
-    const aujourdhui = moment(currentDate).format('DD/MM/YY')
+    const currentDate = new Date()
+    const today = moment(currentDate).format('DD/MM/YY')
 
     // Verifie si la date du devoir est demain
     // Si oui, cela va afficher Demain dans l'affichage des devoirs
-    const demain = moment(currentDate.setDate(currentDate.getDate() + 1)).format('DD/MM/YY')
+    const tomorrow = moment(currentDate.setDate(currentDate.getDate() + 1)).format('DD/MM/YY')
 
     // Retrieves all guild's tasks
     // and sorts them by date
-    const tasks = channel.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY') > Date.now())
+    const tasks = channel.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY') >= new Date().setDate(new Date().getDate() - 1))
     tasks.sort(this.client.funcs.sortDueDates)
     tasks.forEach(task => {
       // task date
@@ -99,16 +99,16 @@ module.exports = {
       // For each field
       embed.fields.forEach((field) => {
         // if there's already a field with this date
-        if (field.name === formatedDate || (field.name === "Aujourd'hui :" && date === aujourdhui) || (field.name === 'Demain :' && date === demain)) {
+        if (field.name === formatedDate || (field.name === "Aujourd'hui :" && date === today) || (field.name === 'tomorrow :' && date === tomorrow)) {
           field.value += `\n**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`
           changed = true
         }
       })
 
       if (!changed) {
-        if (date === aujourdhui) {
+        if (date === today) {
           embed.addField(`Aujourd'hui :`, `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)
-        } else if (date === demain) {
+        } else if (date === tomorrow) {
           embed.addField('Demain :', `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)
         } else {
           embed.addField(formatedDate, `**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`)

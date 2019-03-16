@@ -1,4 +1,5 @@
 const { Command } = require('klasa')
+const moment = require('moment')
 
 module.exports = class extends Command {
   constructor (...args) {
@@ -21,7 +22,7 @@ module.exports = class extends Command {
   async run (message, [index]) {
     if (!index) return message.reply('veuillez indiquer le numéro de la tâche que vous souhaitez supprimer !')
 
-    const tasks = message.guild.settings.tasks
+    const tasks = message.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY') >= new Date().setDate(new Date().getDate() - 1))
     tasks.sort(this.client.funcs.sortDueDates)
 
     const toRemove = tasks[index - 1]

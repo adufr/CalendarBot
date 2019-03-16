@@ -24,7 +24,7 @@ module.exports = class extends Command {
     if (!key || !['titre', 'title', 'date', 'description', 'desc', 'all', '*'].includes(key.toLowerCase())) return message.reply(`veuillez spécifier le champ que vous souhaitez effectuer sur la tâche indiquée (\`titre/date/description\`)`)
     if (!newValue) message.reply(`veuillez indiquer la nouvelle valeur du champ : \`${key}\``)
 
-    const tasks = message.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY') > Date.now())
+    const tasks = message.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY') >= new Date().setDate(new Date().getDate() - 1))
     tasks.sort(this.client.funcs.sortDueDates)
 
     const toEdit = tasks[index - 1]

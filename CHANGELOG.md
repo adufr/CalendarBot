@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [pre-release 0.4.3] - 2019-03-03
+
+### Fixed
+- Tasklist is now correcty showing "today's" tasks
+- Notifications weren't showing correctly
+- `%notify` is now working correctly
+
+---
+
 ## [pre-release 0.4.2] - 2019-03-03
 
 ### Fixed

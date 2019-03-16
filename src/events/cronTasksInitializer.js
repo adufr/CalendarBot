@@ -26,7 +26,7 @@ module.exports = class extends Event {
     // initialize the Notifier task
     if (!this.client.schedule.tasks.some(task => task.taskName === 'notifier')) {
       if (config.node_env === 'production') {
-        this.client.schedule.create('notifier', '0 18 * * *')
+        this.client.schedule.create('notifier', '* * * * *')
       } else {
         this.client.schedule.create('notifier', '* * * * *')
       }

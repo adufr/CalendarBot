@@ -99,7 +99,7 @@ module.exports = {
       // For each field
       embed.fields.forEach((field) => {
         // if there's already a field with this date
-        if (field.name === formatedDate || (field.name === "Aujourd'hui :" && date === today) || (field.name === 'tomorrow :' && date === tomorrow)) {
+        if (field.name === formatedDate || (field.name === "Aujourd'hui :" && date === today) || (field.name === 'Demain :' && date === tomorrow)) {
           field.value += `\n**\`${this.client.funcs.beautify(task.title, 14)}\`**${task.description.trim() !== '' ? ' - ' + task.description : ''}`
           changed = true
         }
@@ -123,12 +123,14 @@ module.exports = {
   getNotificationEmbed (client, channel) {
     this.client = client
 
+    const tasks = channel.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY') >= new Date().setDate(new Date().getDate() - 1))
+
     // If there are no tasks on this server
-    if (!channel.guild.settings.tasks || !channel.guild.settings.tasks[0]) return null
+    if (!tasks || !tasks[0]) return null
 
     // Gets all tasks that are due to tomorrow
     let embedDescription = ''
-    channel.guild.settings.tasks.forEach(task => {
+    tasks.forEach(task => {
       if (moment(task.due_date, 'DD/MM/YY') <= moment().add(1, 'day')) {
         embedDescription += `\n**\`${this.beautify(task.title, 14)}\`** - ${task.description}`
       }

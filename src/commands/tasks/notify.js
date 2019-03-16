@@ -16,14 +16,13 @@ module.exports = class extends Command {
   }
 
   async run (message) {
-    if (!message.guild) return
-
     const guild = message.guild
+    if (!guild) return
 
     // if there is a configured role
-    var role = await guild.roles.find(role => role.id === guild.settings.roles.notify)
+    let role = await guild.roles.find(role => role.id === guild.settings.roles.notify)
     if (role) {
-      return updateRole(message, role)
+      return updateRole(this.client, message, role)
     // otherwise use the bot's default role
     } else {
       role = await guild.roles.find(role => role.name === 'calendarbot_notify' === true)

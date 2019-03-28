@@ -5,10 +5,13 @@ module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
       runIn: ['text', 'dm'],
-      cooldown: 5,
       permissionLevel: 0,
+      requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
+
       aliases: ['invitation', 'invite', 'add'],
-      description: 'Donne le lien d\'invitation du bot'
+      description: "Donne le lien d'invitation du bot",
+
+      cooldown: 5
     })
     this.usageCustom = '%invite'
     this.example = '%invite'

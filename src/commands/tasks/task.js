@@ -5,13 +5,15 @@ module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
       runIn: ['text'],
-      cooldown: 5,
       permissionLevel: 0,
-      aliases: ['t', 'tache'],
       requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
-      description: 'Affiche la liste des tâches',
+
+      aliases: ['t', 'tache'],
       usage: '<list|add|remove|edit|help:default> [key:string] [value:string] [...]',
       usageDelim: ' ',
+      description: 'Affiche la liste des tâches',
+
+      cooldown: 5,
       subcommands: true
     })
     this.usageCustom = '%task'

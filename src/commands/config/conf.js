@@ -4,12 +4,14 @@ const { MessageEmbed } = require('discord.js')
 module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
-      name: 'conf',
-      cooldown: 5,
-      permissionLevel: 6,
-      aliases: ['configuration', 'config', 'cfg'],
       runIn: ['text'],
+      permissionLevel: 6,
+      requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
+
+      aliases: ['configuration', 'config', 'cfg'],
+      // usage: '',
       description: 'Permet de configurer le bot',
+      cooldown: 5,
       extendedHelp: 'La commande conf permet de configurer le bot à votre guise.\n\n__Exemples de configuration :__\n' +
       '```' +
       '!conf channel tasklist #tasklist\n' +

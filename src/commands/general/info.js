@@ -8,10 +8,13 @@ module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
       runIn: ['text'],
-      cooldown: 5,
       permissionLevel: 0,
+      requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
+
       aliases: ['informations', 'information', 'infos', 'i', 'bot', 'src'],
-      description: 'Affiche des informations sur le bot'
+      description: 'Affiche des informations sur le bot',
+
+      cooldown: 5
     })
     this.usageCustom = '%info'
     this.example = '%info'

@@ -6,13 +6,16 @@ const path = require('path')
 module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
-      name: 'help',
-      cooldown: 5,
-      permissionLevel: 0,
-      aliases: ['commandes', 'commands', 'commande', 'cmds', 'cmd', 'aide', 'halp', 'h'],
       runIn: ['text', 'dm'],
+      permissionLevel: 0,
+      requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
+
+      aliases: ['commandes', 'commands', 'commande', 'cmds', 'cmd', 'aide', 'halp', 'h'],
+      // usage: '[command:str]',
       description: 'Affiche la liste des commandes du bot',
-      extendedHelp: "La commande help supporte 1 argument facultatif. Si aucun argument n'est renseigné, le bot renverra la liste complète des commandes disponibles. Sinon, si l'argument est une commande (ou un alias), vous obtiendrez la description complète de la commande."
+      extendedHelp: "La commande help supporte 1 argument facultatif. Si aucun argument n'est renseigné, le bot renverra la liste complète des commandes disponibles. Sinon, si l'argument est une commande (ou un alias), vous obtiendrez la description complète de la commande.",
+
+      cooldown: 5
     })
     this.usageCustom = '%help <command>'
     this.example = '%help task'

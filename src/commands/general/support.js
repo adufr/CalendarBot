@@ -5,9 +5,12 @@ module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
       runIn: ['text', 'dm'],
-      cooldown: 5,
       permissionLevel: 0,
-      description: 'Donne le lien d\'invitation du serveur officiel'
+      requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
+
+      description: 'Donne le lien d\'invitation du serveur officiel',
+
+      cooldown: 5
     })
     this.usageCustom = '%support'
     this.example = '%support'

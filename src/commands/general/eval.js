@@ -5,12 +5,15 @@ const { inspect } = require('util')
 module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
-      aliases: ['ev'],
-      description: language => language.get('COMMAND_EVAL_DESCRIPTION'),
-      extendedHelp: language => language.get('COMMAND_EVAL_EXTENDED'),
-      guarded: true,
+      runIn: ['text'],
       permissionLevel: 10,
-      usage: '<expression:str>'
+      requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
+      guarded: true,
+
+      aliases: ['ev'],
+      usage: '<expression:str>',
+      description: language => language.get('COMMAND_EVAL_DESCRIPTION'),
+      extendedHelp: language => language.get('COMMAND_EVAL_EXTENDED')
     })
     this.hidden = true
   }

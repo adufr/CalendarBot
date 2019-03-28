@@ -12,6 +12,7 @@ module.exports = class extends Command {
       usage: '<list|add|remove|edit|help:default> [key:string] [value:string] [...]',
       usageDelim: ' ',
       description: 'Affiche la liste des tâches',
+      extendedHelp: 'Aucune aide complémentaire à afficher',
 
       cooldown: 5,
       subcommands: true

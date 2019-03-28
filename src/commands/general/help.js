@@ -11,7 +11,7 @@ module.exports = class extends Command {
       requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
 
       aliases: ['commandes', 'commands', 'commande', 'cmds', 'cmd', 'aide', 'halp', 'h'],
-      // usage: '[command:str]',
+      usage: '[command:str]',
       description: 'Affiche la liste des commandes du bot',
       extendedHelp: "La commande help supporte 1 argument facultatif. Si aucun argument n'est renseigné, le bot renverra la liste complète des commandes disponibles. Sinon, si l'argument est une commande (ou un alias), vous obtiendrez la description complète de la commande.",
 
@@ -21,19 +21,17 @@ module.exports = class extends Command {
     this.example = '%help task'
   }
 
-  async run (message) {
-    // retrieves arguments
-    const args = message.content.split(' ')
-
+  async run (message, [command]) {
     // if the first argument is a command that exists
     // we display the help of this command:
-    if (this.client.commands.get(args[1])) {
-      // Retrieving command object
-      const cmd = this.client.commands.get(args[1])
+    if (command) {
+      // if there are arguments but they are not a valid command
+      const cmd = this.client.commands.get(command)
+      if (!cmd) return message.reply(`commande **%${command}** introuvable... Tapez \`%help\` pour afficher la liste des commandes.`)
 
       const embed = new MessageEmbed()
         .setColor('#3586ff')
-        .setTitle(`Commande %${args[1]}`)
+        .setTitle(`Commande %${command}`)
         .setDescription(cmd.extendedHelp)
         .addField('Utilisation', cmd.usageCustom, true)
         .addField('Exemple', cmd.example, true)
@@ -42,9 +40,6 @@ module.exports = class extends Command {
         .setFooter(this.client.user.username, this.client.user.displayAvatarURL())
       return message.channel.send(embed)
     }
-
-    // if there are arguments but they are not a valid command
-    if (args[1]) return message.reply(`commande **%${args[1]}** introuvable... Tapez \`%help\` pour afficher la liste des commandes.`)
 
     // if no argument:
     // display a list of all commands

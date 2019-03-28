@@ -150,7 +150,7 @@ module.exports = {
   formatDate (date, weekday) {
     let temp = date.toString().split('/')
 
-    var jour = ''
+    let jour = ''
     switch (weekday) {
       case 1:
         jour = 'Lundi'
@@ -175,7 +175,7 @@ module.exports = {
         break
     }
 
-    var mois = ''
+    let mois = ''
     switch (temp[1]) {
       case '01':
         mois = 'Janvier'

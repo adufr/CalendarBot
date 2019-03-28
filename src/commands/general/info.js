@@ -25,7 +25,7 @@ module.exports = class extends Command {
     const uptime = moment.duration(this.client.uptime).format(' D [jour], H [h] et m [minute], s [s]')
 
     // constructing message's body
-    var desc = ''
+    let desc = ''
     desc += '**`' + this.client.funcs.beautify('Version du bot', 20) + '`** : v' + packageJson.version + '\n'
     desc += '**`' + this.client.funcs.beautify('Version discordjs', 20) + '`** : master\n'
     desc += '**`' + this.client.funcs.beautify('Version klasa.js', 20) + '`** : master\n'

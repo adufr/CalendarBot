@@ -30,7 +30,7 @@ module.exports = class extends Command {
 
     const el = args[0]
     const key = args[1]
-    var value = args[2]
+    let value = args[2]
     // ===========================
     // == channel configuration
     // ===========================

@@ -19,9 +19,9 @@ services:
   database:
     container_name: calendar-bot-database
     hostname: calendar-bot-database
-    image: rethinkdb:2.3.6
+    image: mongo:3.6
     restart: on-failure
     volumes:
-      - ./src/bwd/provider/rethinkdb:/data
-    ports:
-      - "8080:8080"
+      - ./src/bwd/provider/mongodb:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: calendarbot

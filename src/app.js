@@ -20,8 +20,8 @@ const client = new CalendarBotClient({
     }
   },
   providers: {
-    default: 'rethinkdb',
-    rethinkdb: { db: 'calendarbot', servers: [{ host: config.database.host, port: config.database.port }] }
+    default: 'mongodb',
+    mongodb: { db: 'calendarbot' }
   },
   presence: {
     activity: {

@@ -4,11 +4,14 @@ module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
       runIn: ['text'],
-      cooldown: 5,
       permissionLevel: 6,
+      requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
+
       aliases: ['setprefix', 'prefixe', 'p'],
+      usage: '[reset|prefix:str{1,10}]',
       description: 'Change le préfixe du serveur actuel',
-      usage: '[reset|prefix:str{1,10}]'
+
+      cooldown: 5
     })
     this.usageCustom = '%prefix'
     this.example = '%prefix'

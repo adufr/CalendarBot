@@ -1,6 +1,6 @@
 {
   "name": "calendarbot",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -22,11 +22,10 @@
     "convict": "^4.4.1",
     "discord.js": "github:discordjs/discord.js",
     "dotenv": "^6.2.0",
-    "klasa": "github:dirigeants/klasa#master",
-    "klasa-member-gateway": "github:dirigeants/klasa-member-gateway",
+    "klasa": "github:dirigeants/klasa",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
-    "rethinkdbdash": "^2.3.31"
+    "mongodb": "^3.2.2"
   },
   "devDependencies": {
     "eslint": "^5.15.0",

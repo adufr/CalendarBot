@@ -8,10 +8,13 @@ module.exports = class extends Command {
   constructor (...args) {
     super(...args, {
       runIn: ['text'],
-      cooldown: 5,
       permissionLevel: 0,
+      requiredPermissions: ['USE_EXTERNAL_EMOJIS'],
+
       aliases: ['informations', 'information', 'infos', 'i', 'bot', 'src'],
-      description: 'Affiche des informations sur le bot'
+      description: 'Affiche des informations sur le bot',
+
+      cooldown: 5
     })
     this.usageCustom = '%info'
     this.example = '%info'
@@ -22,7 +25,7 @@ module.exports = class extends Command {
     const uptime = moment.duration(this.client.uptime).format(' D [jour], H [h] et m [minute], s [s]')
 
     // constructing message's body
-    var desc = ''
+    let desc = ''
     desc += '**`' + this.client.funcs.beautify('Version du bot', 20) + '`** : v' + packageJson.version + '\n'
     desc += '**`' + this.client.funcs.beautify('Version discordjs', 20) + '`** : master\n'
     desc += '**`' + this.client.funcs.beautify('Version klasa.js', 20) + '`** : master\n'

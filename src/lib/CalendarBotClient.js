@@ -1,8 +1,5 @@
 const { Client } = require('klasa')
 
-// Plugins
-Client.use(require('klasa-member-gateway'))
-
 // Schemas
 const defaultGuildSchema = require(`./schemas/defaultGuildSchema`)
 

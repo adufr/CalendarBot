@@ -6,10 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [pre-release 0.4.3] - 2019-03-03
+## [pre-release 0.4.5] - 2019-04-01
 
 ### Fixed
-- Ups.. I won't ping you every minute anymore.. I swear..
+- Notifications *should* now show properly...
+
+### Changed
+- Switched to MongoDB provider
+- Improved overall code quality
+
+---
+
+## [pre-release 0.4.4] - 2019-03-03
+
+### Fixed
+- Ups.. I won't ping syou every minute anymore.. I swear..
 
 ---
 

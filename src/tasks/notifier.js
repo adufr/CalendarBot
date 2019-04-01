@@ -25,15 +25,12 @@ module.exports = class extends Task {
       // if bot's last msg is already a notification: delete & post new one
       // otherwise, do nothing but posting the new one
       await channel.messages.fetch({ limit: 2 }).then(async (messages) => {
-        // console.log(messages)
         let msg = messages.first()
-        // console.log(messages)
-        // console.log(messages.first())
         if (msg && msg.author.id === this.client.user.id) {
-          await msg.delete().catch(err => console.log(err))
+          await msg.delete().catch(err => this.client.console.error(err))
           msg = messages.first(2)[1]
           if (msg && msg.author.id === this.client.user.id) {
-            await msg.delete().catch(err => console.log(err + '2'))
+            await msg.delete().catch(err => this.client.console.error(err))
           }
         }
       })

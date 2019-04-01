@@ -123,21 +123,17 @@ module.exports = {
   getNotificationEmbed (client, channel) {
     this.client = client
 
-    const tasks = channel.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY') >= new Date().setDate(new Date().getDate() - 1))
+    // get all tasks due for tomorrow
+    const tasks = channel.guild.settings.tasks.filter(task => moment(task.due_date, 'DD-MM-YY').format('DD-MM-YY') === moment().add(1, 'day').format('DD-MM-YY'))
 
-    // If there are no tasks on this server
+    // If there are no tasks due for tomorrow on this server
     if (!tasks || !tasks[0]) return null
 
-    // Gets all tasks that are due to tomorrow
+    // Builds tasklist
     let embedDescription = ''
     tasks.forEach(task => {
-      if (moment(task.due_date, 'DD/MM/YY') <= moment().add(1, 'day')) {
-        embedDescription += `\n**\`${this.beautify(task.title, 14)}\`** - ${task.description}`
-      }
+      embedDescription += `\n**\`${this.beautify(task.title, 14)}\`** - ${task.description}`
     })
-
-    // If there are no tasks for tomorrow
-    if (!embedDescription) return null
 
     // Embed with tasks list
     const embed = new MessageEmbed()
@@ -154,7 +150,7 @@ module.exports = {
   formatDate (date, weekday) {
     let temp = date.toString().split('/')
 
-    var jour = ''
+    let jour = ''
     switch (weekday) {
       case 1:
         jour = 'Lundi'
@@ -179,7 +175,7 @@ module.exports = {
         break
     }
 
-    var mois = ''
+    let mois = ''
     switch (temp[1]) {
       case '01':
         mois = 'Janvier'

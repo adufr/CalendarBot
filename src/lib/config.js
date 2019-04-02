@@ -16,21 +16,21 @@ const config = convict({
   },
   database: {
     host: {
-      doc: 'The RethinkDB hostname',
+      doc: 'The MongoDB hostname',
       format: String,
-      default: 'database',
+      default: 'localhost',
       arg: 'db_host',
       env: 'DB_HOST'
     },
     port: {
-      doc: 'The RethinkDB port',
+      doc: 'The MongoDB port',
       format: Number,
-      default: '28015',
+      default: '27017',
       arg: 'db_port',
       env: 'DB_PORT'
     },
     name: {
-      doc: 'The RethinkDB database name',
+      doc: 'The MongoDB database name',
       format: String,
       default: 'calendarbot',
       arg: 'db_name',

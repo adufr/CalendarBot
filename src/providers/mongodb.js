@@ -1,6 +1,7 @@
 // Copyright (c) 2017-2019 dirigeants. All rights reserved. MIT license.
 const { Provider, util: { mergeDefault, mergeObjects, isObject } } = require('klasa')
 const { MongoClient: Mongo } = require('mongodb')
+const config = require('../lib/config')
 
 module.exports = class extends Provider {
   constructor (...args) {
@@ -10,9 +11,9 @@ module.exports = class extends Provider {
 
   async init () {
     const connection = mergeDefault({
-      host: 'calendar-bot-database', // container's name
-      port: 27017,
-      db: 'calendarbot',
+      host: config.database.host,
+      port: config.database.port,
+      db: config.database.name,
       options: {}
     }, this.client.options.providers.mongodb)
 

@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [pre-release 0.4.6] - 2019-04-02
+
+### Fixed
+- `docker-compose` is now correctly working
+- Load database config variables
+
+---
+
 ## [pre-release 0.4.5] - 2019-04-01
 
 ### Fixed
